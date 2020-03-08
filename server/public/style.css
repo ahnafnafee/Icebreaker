@@ -217,11 +217,6 @@ nav {
     margin-right: auto;
 }
 
-/* .main-message h1 {
-    font-size: 4rem;
-    margin: 1rem 0;
-} */
-
 .btn-ctn {
     margin-top: 2rem;
     font-size: 1.5rem;
@@ -375,7 +370,7 @@ nav {
 
 @media screen and (min-width: 470px) {
     .footer-container .footer-wave {
-        content: url();
+        display: none;
     }
 
     .main-message h1 {
@@ -481,7 +476,7 @@ nav {
     }
 
     .nav-brand {
-        width: 5rem;
+        width: 90px;;
         margin-left: initial;
         margin-right: initial;
 
