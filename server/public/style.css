@@ -180,7 +180,9 @@ nav {
     left: 0;
     right: 0;
     padding: 0;
-    margin: auto;
+    margin-top: 10rem;
+    margin-left:auto;
+    margin-right: auto;
 }
 
 
@@ -202,7 +204,7 @@ nav {
     font-size: 2.5rem;
     width: 70%;
     text-align: center;
-    margin-top: -15%;
+    margin-top: -19%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -212,6 +214,7 @@ nav {
     text-align: center;
     font-size: 1.5rem;
     margin-top: 1.7rem;
+    color: #808080;
     width: 35%;
     margin-left: auto;
     margin-right: auto;
