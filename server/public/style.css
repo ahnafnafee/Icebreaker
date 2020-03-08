@@ -89,7 +89,7 @@ nav {
 }
 
 .nav-brand {
-    width: 120px;
+    width: 90px;
     margin: auto;
 }
 
@@ -200,11 +200,12 @@ nav {
 
 .main-message h1 {
     font-family: "TiemposH", sans-serif;
+    font-weight: 400;
     display: block;
     font-size: 2.5rem;
     width: 70%;
     text-align: center;
-    margin-top: -19%;
+    margin-top: -16%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -212,10 +213,11 @@ nav {
 .main-message p {
     font-family: "Questrial", sans-serif;
     text-align: center;
-    font-size: 1.5rem;
-    margin-top: 1.7rem;
-    color: #808080;
-    width: 35%;
+    font-weight: 400;
+    font-size: 1.7rem;
+    margin-top: 1.8rem;
+    color: rgb(128, 128, 128, 0.8);
+    width: 45%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -386,6 +388,10 @@ nav {
         flex-wrap: wrap;
         margin-top: 2rem;
     }
+
+    .site-footer {
+        border-top: 1rem solid #7ABCFF;
+    }
 }
 
 
@@ -488,7 +494,7 @@ nav {
     .main-message h1 {
         font-size: 3.5rem;
         width: 70%;
-        margin-top: -24%;
+        margin-top: -15%;
     }
 
     .main-message p {
