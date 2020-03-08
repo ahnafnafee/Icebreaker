@@ -3,6 +3,10 @@
     src: url("fonts/TiemposHeadline-Medium.ttf");
 }
 
+@font-face {
+    font-family: "TheRambler";
+    src: url("fonts/TheRambler.ttf");
+}
 
 
 /* Global Styles */
@@ -86,6 +90,10 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 1rem 0;
+}
+
+#logo {
+    width: 90px;
 }
 
 .nav-brand {
