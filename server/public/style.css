@@ -148,7 +148,7 @@ nav {
 
 .close {
     position: absolute;
-    top: 7.5rem;
+    top: 6.5rem;
     right: 3rem;
 }
 
@@ -282,7 +282,8 @@ nav {
 .footer-container footer {
     right: 0;
     bottom: 0;
-    height: 15rem;
+    padding-bottom: 1rem;
+    height: auto;
     left: 0;
     background-color: #517CA7;
 }
