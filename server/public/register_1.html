@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <meta name="viewport" content="width-device-width, initial-scale=1">
+
+    </head>
+    <body>
+
+
+        
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">About</a>
+            <a href="#">Features</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Login</a>
+            <a href="#">Sign Up</a>
+        </div>
+        <img src="Group-499.png" alt="Logo" height="60" width="60" id="logo">
+        <h1>Create New Account</h1>
+        <div id="container">
+            <label for="Full Name">Full Name</label>
+            <input type="text" placeholder="Full Name" required>
+
+            <label for="Username">Username</label>
+            <input type="text" placeholder="Username" required>
+
+            <label for="email">Email</label>
+            <input id="email" type="email" >
+
+            <label for="password">Password</label>
+            <input id="password" type="password" >
+            
+            <label for="Birth">Date of Birth</label>
+            <input id="Birth" type="date">
+
+            <label for="Account">Create Account</label>
+            <input id="Account" type="submit">
+
+
+        </div>
+        <div>Already have an account?<a href="#">Log in</a></div>
+        <div id="EXPLORE">EXPLORE</div>
+        <div id="SUPPORT">GET SUPPORT</div> 
+
+        <div id="reference">
+            <a id="About" href="#">About</a>
+            <a id="Features" href="#">Features</a>
+            <a id="Contact" href="#">Contact Us</a>
+            <a id="FAQ" href="#">FAQ</a>
+        </div>
+        <div id="popup">
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        </div>
+
+    </body>
+    <script>
+        function openNav() {
+                 document.getElementById("mySidenav").style.width = "250px";
+                }
+
+        function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                }
+    </script>
+</html>
