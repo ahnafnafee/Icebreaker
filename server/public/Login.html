@@ -132,17 +132,18 @@ h3{
 <img src="Group-499.png" alt="Logo" height="60" width="60" id="logo">
 <h3>Welcome back!</h3>
 
-<div id="container">
+<div id="container" class="form">
   <form action="#" method="GET" id="form_login">
    
       <label for="login">Username</label>
-      <input type="text" placeholder="Username" required>
+      <input type="text" id="Username" placeholder="Username" required>
 
       <label for="password">Password</label>
-      <input id="password" type="password" placeholder="Password" required>
+      <input id="Password" type="password" placeholder="Password" required>
 	
-      <button type="submit">Login</button> 
-      <label> <input type="checkbox" checked="checked">Remember me</label>
+      
+      <button id="Login" type="submit">Login</button> 
+      <label><input type="checkbox" checked="checked">Remember me</label>
   
   </form>
 </div>
@@ -169,6 +170,42 @@ function openNav() {
 
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
+  
+}
+
+
+
+
+var username= document.getElementById("Username"),
+var password= document.getElementById("Password"),
+var submit= document.getElementById("Login")
+
+if (submit){
+  submit.addEventListener("click", () => {
+    var xhr= new XMLHttpRequest();
+
+    request.onload = () => {
+      var responseObject= null;
+      try{
+        responseObject= JSON.parse(request.responseText);
+
+      } catch(e) {
+        console.error("Couldn't parse JSON!");
+      }
+      if (responseObject){
+        handleReponse(responseObject);
+      }
+    }
+
+    var requestData= `username=${username.innerHTML}&password=${password.innerHTML}`;
+
+    xhr.open("POST",)
+    xhr.send()
+  });
+
+  function handleResponse(responseObject){
+    console.log(responseObject)
+  }
 }
 </script>
    
