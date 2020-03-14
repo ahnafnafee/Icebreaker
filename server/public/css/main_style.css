@@ -1,11 +1,11 @@
 @font-face {
     font-family: "TiemposH";
-    src: url("fonts/TiemposHeadline-Medium.ttf");
+    src: url("../fonts/TiemposHeadline-Medium.ttf");
 }
 
 @font-face {
     font-family: "TheRambler";
-    src: url("fonts/TheRambler.ttf");
+    src: url("../fonts/TheRambler.ttf");
 }
 
 
@@ -105,14 +105,14 @@ nav {
     display: inline-block;
     width: 3rem;
     height: 3rem;
-    background: url("images/ic_menu.svg") center no-repeat;
+    background: url("../images/ic_menu.svg") center no-repeat;
 }
 
 .close-outline {
     display: inline-block;
     width: 3rem;
     height: 3rem;
-    background: url("images/ic_close.svg") center no-repeat;
+    background: url("../images/ic_close.svg") center no-repeat;
 }
 
 .close span {
@@ -270,7 +270,7 @@ nav {
 }
 
 .footer-container .footer-wave {
-    content: url(images/wave_small.png);
+    content: url(../images/wave_small.png);
     width: 100%;
     right: 0;
     left: 0;
@@ -440,7 +440,7 @@ nav {
     }
 
     .img-bg {
-        content: url(images/home_bg_large.png);
+        content: url(../images/home_bg_large.png);
         padding-left: 10rem;
         padding-right: 10rem;
     }

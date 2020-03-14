@@ -1,206 +1,126 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-
-h2,p{
-    text-align: left;
-}
-
-#EXPLORE {
-    position: absolute;
-    bottom: 100px;
-}
-
-#SUPPORT{
-    position: absolute;
-    bottom: 100px;
-    right: 150px;
-    }
-
-#popup{
-  position:relative;
-  right:-1800px;
-  top: -100px;
-  
-}
-
-h3{
-  text-align: center;
-}
-
-#logo{ 
-  display:block;
-  margin-left: auto;
-  margin-right: auto;
-  
-}
-
-#container {
-  display: table;
-  width: 100%;
-}
-
-#form_login{
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-}
-
-#Register {
-  text-align:center;
-}
-
-#About {
-    position: absolute;
-    bottom: 70px;
-    }
-#Features {
-  position:absolute;
-  bottom: 40px;
-}
-
-#Contact {
-  position:absolute;
-  bottom:70px;
-  right:150px;
-}
-
-#FAQ {
-  position:absolute;
-  bottom: 40px;
-  right: 150px;
-}
-    
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Questrial|Raleway|Source+Sans+Pro&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Exo:900&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/favicon.png">
+  <link href="css/reg_style.css" rel="stylesheet" />
+  <title>Icebreaker - Login</title>
+  <script src="scripts/login_script.js" defer></script>
 
 </head>
+
 <body>
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Features</a>
-  <a href="#">Contact Us</a>
-  <a href="#">Login</a>
-  <a href="#">Sign Up</a>
-</div>
-<img src="Group-499.png" alt="Logo" height="60" width="60" id="logo">
-<h3>Welcome back!</h3>
+  <header>
+    <div class="container-1">
+      <nav>
+        <div class="menu-outline empty"></div>
+        <div class="nav-brand">
+          <a href="index.html">
+            <img id="logo" src="images/ic_logo.png" alt="">
+          </a>
+        </div>
 
-<div id="container" class="form">
-  <form action="#" method="GET" id="form_login">
-   
-      <label for="login">Username</label>
-      <input type="text" id="Username" placeholder="Username" required>
+        <div class="menu-icons open">
+          <span class="menu-outline"></span>
+        </div>
 
-      <label for="password">Password</label>
-      <input id="Password" type="password" placeholder="Password" required>
-	
-      
-      <button id="Login" type="submit">Login</button> 
-      <label><input type="checkbox" checked="checked">Remember me</label>
-  
-  </form>
-</div>
+        <ul class="nav-list">
+          <div class="menu-icons close">
+            <span class="close-outline"></span>
+          </div>
+          <li class="nav-item first">
+            <a href="#" class="nav-link">ABOUT</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">FEATURES</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">CONTACT US</a>
+          </li>
+          <li class="nav-item login">
+            <a href="login.html" class="nav-link">LOGIN</a>
+          </li>
+          <li class="nav-item">
+            <a href="register.html" class="nav-link reg-btn">SIGN UP</a>
+          </li>
+        </ul>
 
-<p id="Register">Need an account?<a href="#">Register</a></p> 
-<div id="EXPLORE">EXPLORE</div>
-<div id="SUPPORT">GET SUPPORT</div> 
+      </nav>
+    </div>
+  </header>
 
-<div id="reference">
-  <a id="About" href="#">About</a>
-  <a id="Features" href="#">Features</a>
-  <a id="Contact" href="#">Contact Us</a>
-  <a id="FAQ" href="#">FAQ</a>
-</div>
-<div id="popup">
-      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-</div>
+  <main>
+    <div class="main-ctn">
+      <section class="hero">
+        <div class="container-2">
+          <h1 class="welcome">Welcome<br>Back!</h1>
+          <div class="bg-img"></div>
+          <form action="#" method="GET" id="form_login">
+            <div class="group" data-validate="Correct username required">
+              <input class="inp-label" id="username" type="text" name="username" placeholder="Username" required><span
+                class="highlight"></span><span class="bar"></span>
+              <span class="symbol s-username"></span>
+            </div>
+            <div class="group" data-validate="Password is required">
+              <input class="inp-label" id="password" type="password" name="password" placeholder="Password"
+                required><span class="highlight"></span><span class="bar"></span>
+              <span class="symbol s-pass"></span>
+            </div>
+            <div class="f-btn-container">
+              <input id="submit" type="submit" class="reg-login-btn" value="Login" />
+            </div>
+            <div>
+              <p class="p-need">Need an account? <span class="forgot-reg">Register</span></p>
+            </div>
+          </form>
 
+        </div>
+      </section>
+    </div>
+  </main>
 
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
+  <div class="footer-container">
+    <div class="footer-wave"></div>
+    <footer>
+      <div class="site-footer">
+        <nav class="site-footer--nav">
+          <div class="site-footer--col">
+            <h5 class="footer-col--title-1">
+              EXPLORE
+            </h5>
+            <ul class="footer-col--list-1">
+              <li class="footer-col--item-1">
+                <a href="#" class="footer-item-link">About</a>
+              </li>
+              <li class="footer-col--item-1">
+                <a href="#" class="footer-item-link">Features</a>
+              </li>
+            </ul>
+          </div>
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  
-}
+          <div class="site-footer--col">
+            <h5 class="footer-col--title-2">
+              GET SUPPORT
+            </h5>
+            <ul class="footer-col--list-2">
+              <li class="footer-col--item-2">
+                <a href="#" class="footer-item-link">Contact Us</a>
+              </li>
+              <li class="footer-col--item-2">
+                <a href="#" class="footer-item-link">FAQ</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <p class="copyright">&copy; 2020 Icebreaker</p>
+      </div>
 
-
-
-
-
-var submit= document.getElementById("Login");
-var url= ""
-
-submit.addEventListener("click",POSTinfo)
-
-function POSTinfo(e){
-  e.preventDefault();
-
-  var username = document.getElementById("Username").value;
-  var password = document.getElementById("Password").value;
-  var params = `username=${username}&password=${password}`;
-
-  var xhr= new XMLHttpRequest();
-  xhr.open("POST",url,true)
-  xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-  xhr.onreadystatechange = function(){
-    if (xhr.readyState == 4 && xhr.status == 200){
-      alert(xhr.responseText);
-    }
-    }
-    xhr.send(params);
- }
-
-</script>
-   
 </body>
-</html> 
+
+</html>
