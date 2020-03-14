@@ -1,18 +1,21 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var request = require('request');
-var path = require("path");
-var fs = require('fs');
-var app = express();
+let express = require("express");
+let bodyParser = require("body-parser");
+let request = require('request');
+let path = require("path");
+let fs = require('fs');
+let app = express();
+const port = process.env.PORT || 8080;
 
-var fs = require('fs');
-var app = express();
-
+// For serving files from public dir
 app.use(express.static("public"));
 
-app.use(bodyParser.urlencoded( { extended: false }))
+// Using body-parser middleware
+app.use(bodyParser.json());
 
-app.listen(8080);
+// Opening port
+app.listen(port, function () {
+    console.log(`Staring server at port ${port}`);
+});
 
 app.get("/", function(req, res) {
     res.sendFile("./index.html");
