@@ -17,25 +17,25 @@ function redirectURL(e) {
 selectElement(".forgot-reg").addEventListener("click", redirectURL);
 
 
-var submit = selectElement("#submit");
-var url = "";
+// var submit = selectElement("#submit");
+// var url = "/login";
 
-submit.addEventListener("click", POSTinfo);
+// submit.addEventListener("click", POSTinfo);
 
-function POSTinfo(e) {
-  var username = selectElement("#username").value;
-  var password = selectElement("#password").value;
-  var params = `username=${username}&password=${password}`;
+// function POSTinfo(e) {
+//   var username = selectElement("#username").value;
+//   var password = selectElement("#password").value;
+//   var params = `username=${username}&password=${password}`;
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      alert(xhr.responseText);
-    }
-  };
-  xhr.send(params);
+//   var xhr = new XMLHttpRequest();
+//   xhr.open("POST", url, true);
+//   xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+//   xhr.onreadystatechange = function() {
+//     if (xhr.readyState == 4 && xhr.status == 200) {
+//       alert(xhr.responseText);
+//     }
+//   };
+//   xhr.send(params);
 
-  e.preventDefault();
-}
+//   e.preventDefault();
+// }
