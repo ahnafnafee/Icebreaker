@@ -19,10 +19,10 @@
         <h1>Create New Account</h1>
         <div id="container">
             <label for="Full Name">Full Name</label>
-            <input type="text" placeholder="Full Name" required>
+            <input id="fullname" type="text" placeholder="Full Name" required>
 
             <label for="Username">Username</label>
-            <input type="text" placeholder="Username" required>
+            <input id="username" type="text" placeholder="Username" required>
 
             <label for="email">Email</label>
             <input id="email" type="email" >
@@ -31,7 +31,7 @@
             <input id="password" type="password" >
             
             <label for="Birth">Date of Birth</label>
-            <input id="Birth" type="date">
+            <input id="birth" type="date">
 
             <label for="Account">Create Account</label>
             <input id="Account" type="submit">
@@ -51,7 +51,9 @@
         <div id="popup">
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
         </div>
-
+        
+        <div id="FormErrors" style="color:red"></div>
+        
     </body>
     <script>
         function openNav() {
@@ -61,5 +63,32 @@
         function closeNav() {
                 document.getElementById("mySidenav").style.width = "0";
                 }
+
+        var account=document.getElementById("Account");
+        var url="";
+
+        account.addEventListener("click",getAccount)
+
+        function getAccount(e){
+            e.preventDefault();
+
+            var fullname= document.getElementById("fullname").value;
+            var username= document.getElementById("username").value;
+            var email=document.getElementById("email").value;
+            var password= documenet.getElementById("password").value;
+            var birth=document.getelementById("birth").value;
+
+            var xhr= new XMLHttpRequest();
+            
+            xhr.open("POST",url,true);
+            xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+            xhr.onreadystatechange=function(){
+                if (xhr.readyState == 4 && xhr.status == 200){
+                    alert(xhr.responseText);
+                }
+            }
+            xhr.send();
+
+        }
     </script>
 </html>

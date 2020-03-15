@@ -133,7 +133,7 @@ h3{
 <h3>Welcome back!</h3>
 
 <div id="container" class="form">
-  <form action="#" method="GET" id="form_login">
+  <form action="#" method="POST" id="form_login">
    
       <label for="login">Username</label>
       <input type="text" id="Username" placeholder="Username" required>
@@ -162,7 +162,7 @@ h3{
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 </div>
 
-
+<div id="FormErrors" style="color:red"></div>
 <script>
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
