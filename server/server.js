@@ -2,8 +2,6 @@ let express = require("express");
 let bodyParser = require("body-parser");
 let request = require("request");
 let morgan = require("morgan");
-let path = require("path");
-let fs = require("fs");
 let app = express();
 const port = process.env.PORT || 8080;
 
@@ -24,10 +22,19 @@ app.listen(port, function() {
 });
 
 // POST /login gets urlencoded bodies
-app.post("/login", urlencodedParser, function(req, res) {
+app.post("/login", urlencodedParser, function(req, res, next) {
+  console.log(req);
   console.log(req.body);
-  res.redirect("main.html");
-//   console.log(req.params.password);
+  //   console.log(req.body.username);
+  //   console.log(req.body.password);
+  //   //   res.redirect("main.html");
+  if (req.body.username == "abc" && req.body.password == "1234") {
+    res.redirect("main.html");
+  } else {
+    res.sendStatus(401);
+  }
+  next();
+  //   console.log(req.params.password);
 });
 
 // POST /api/users gets JSON bodies
