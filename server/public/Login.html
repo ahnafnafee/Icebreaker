@@ -17,59 +17,6 @@
 
 <body>
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Features</a>
-  <a href="#">Contact Us</a>
-  <a href="#">Login</a>
-  <a href="#">Sign Up</a>
-</div>
-<img src="Group-499.png" alt="Logo" height="60" width="60" id="logo">
-<h3>Welcome back!</h3>
-
-<div id="container" class="form">
-  <form action="#" method="POST" id="form_login">
-   
-      <label for="login">Username</label>
-      <input type="text" id="Username" placeholder="Username" required>
-
-      <label for="password">Password</label>
-      <input id="Password" type="password" placeholder="Password" required>
-	
-      
-      <button id="Login" type="submit">Login</button> 
-      <label><input type="checkbox" checked="checked">Remember me</label>
-  
-  </form>
-</div>
-
-<p id="Register">Need an account?<a href="#">Register</a></p> 
-<div id="EXPLORE">EXPLORE</div>
-<div id="SUPPORT">GET SUPPORT</div> 
-
-<div id="reference">
-  <a id="About" href="#">About</a>
-  <a id="Features" href="#">Features</a>
-  <a id="Contact" href="#">Contact Us</a>
-  <a id="FAQ" href="#">FAQ</a>
-</div>
-<div id="popup">
-      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-</div>
-
-<div id="FormErrors" style="color:red"></div>
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  
-}
-
-
 <body>
 
   <header>
@@ -134,6 +81,7 @@ function closeNav() {
             <div>
               <p class="p-need">Need an account? <span class="forgot-reg">Register</span></p>
             </div>
+            <div id="FormErrors" style="color:red"></div>
           </form>
 
         </div>
