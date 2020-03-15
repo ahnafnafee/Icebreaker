@@ -1,0 +1,19 @@
+{
+  "name": "icebreaker",
+  "version": "1.0.0",
+  "description": "A personality dating app",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.2",
+    "request": "^2.88.2"
+  }
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Questrial|Raleway|Source+Sans+Pro&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo:900&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.png">
+    <link href="css/reg_style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
+    <title>Icebreaker - Register</title>
+    <script src="scripts/reg1_script.js" defer></script>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container-1">
+            <nav>
+                <div class="menu-outline empty"></div>
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img id="logo" src="images/ic_logo.png" alt="">
+                    </a>
+                </div>
+
+                <div class="menu-icons open">
+                    <span class="menu-outline"></span>
+                </div>
+
+                <ul class="nav-list">
+                    <div class="menu-icons close">
+                        <span class="close-outline"></span>
+                    </div>
+                    <li class="nav-item first">
+                        <a href="#" class="nav-link">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">FEATURES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">CONTACT US</a>
+                    </li>
+                    <li class="nav-item login">
+                        <a href="login.html" class="nav-link">LOGIN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="register.html" class="nav-link reg-btn">SIGN UP</a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-ctn">
+            <section class="hero">
+                <div class="container-2">
+                    <h1 class="welcome">Create new<br>account</h1>
+                    <div class="bg-img"></div>
+                    <form action="#" method="GET" id="form_login">
+                        <div class="group" data-validate="Fullname required">
+                            <input class="inp-label" id="fullname" type="text" name="fullname" placeholder="Full name"
+                                required><span class="highlight"></span><span class="bar"></span>
+                            <span class="symbol s-name"></span>
+                        </div>
+                        <div class="group" data-validate="Username required">
+                            <input class="inp-label" id="username" type="text" name="username" placeholder="Username"
+                                required><span class="highlight"></span><span class="bar"></span>
+                            <span class="symbol s-username"></span>
+                        </div>
+                        <div class="group" data-validate="Password is required">
+                            <input class="inp-label" id="password" type="password" name="password"
+                                placeholder="Password" required><span class="highlight"></span><span class="bar"></span>
+                            <span class="symbol s-pass"></span>
+                        </div>
+                        <div class="group" data-validate="Email required">
+                            <input class="inp-label" id="email" type="email" name="email" placeholder="Email"
+                                required><span class="highlight"></span><span class="bar"></span>
+                            <span class="symbol s-email"></span>
+                        </div>
+                        <div class="group" data-validate="Date of Birth required">
+                            <input class="inp-label" id="datetime" type="datetime" name="dob"
+                                placeholder="Date of Birth" required><span class="highlight"></span><span
+                                class="bar"></span>
+                            <span class="symbol s-dob"></span>
+                        </div>
+                        <div class="f-btn-container">
+                            <input id="submit" type="submit" class="reg-login-btn" value="Create Account" />
+                        </div>
+                        <div>
+                            <p class="p-need">Already have an account? <span class="forgot-reg">Log In</span></p>
+                        </div>
+                    </form>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="footer-container">
+        <div class="footer-wave"></div>
+        <footer>
+            <div class="site-footer">
+                <nav class="site-footer--nav">
+                    <div class="site-footer--col">
+                        <h5 class="footer-col--title-1">
+                            EXPLORE
+                        </h5>
+                        <ul class="footer-col--list-1">
+                            <li class="footer-col--item-1">
+                                <a href="#" class="footer-item-link">About</a>
+                            </li>
+                            <li class="footer-col--item-1">
+                                <a href="#" class="footer-item-link">Features</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="site-footer--col">
+                        <h5 class="footer-col--title-2">
+                            GET SUPPORT
+                        </h5>
+                        <ul class="footer-col--list-2">
+                            <li class="footer-col--item-2">
+                                <a href="#" class="footer-item-link">Contact Us</a>
+                            </li>
+                            <li class="footer-col--item-2">
+                                <a href="#" class="footer-item-link">FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <p class="copyright">&copy; 2020 Icebreaker</p>
+            </div>
+
+</body>
+
+</html>
