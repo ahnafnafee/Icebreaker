@@ -28,15 +28,18 @@ $(function() {
       url: "/login",
       type: "POST",
       contentType: "application/json",
-      data: JSON.stringify({ user: username.val(), pass: password.val() }),
+      data: JSON.stringify({
+        username: username.val(),
+        password: password.val()
+      }),
       success: function(response) {
         window.location = response;
       },
       statusCode: {
         401: () => {
-          alert("Incorrect Login");
+            alert("Unauthorized");
         }
-      }
+    }
     });
   });
 });
