@@ -16,45 +16,27 @@ function redirectURL(e) {
 
 selectElement(".forgot-reg").addEventListener("click", redirectURL);
 
-var endpoint = "/login";
-var username = selectElement("#username").value;
-var password = selectElement("#password").value;
-var params = {
-  user: username,
-  pass: password
-};
+$(function() {
+  $("#submit").on("click", function(event) {
+    event.preventDefault();
 
-$.ajax({
-  url: endpoint,
-  method: "POST",
-  data: JSON.stringify(params),
-  dataType: "json"
-}).done(function(data) {
-  alert("Hey");
+    let username = $("#username");
+    let password = $("#password");
+    console.log(JSON.stringify({ user: username.val(), pass: password.val() }));
+
+    $.ajax({
+      url: "/login",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({ user: username.val(), pass: password.val() }),
+      success: function(response) {
+        window.location = response;
+      },
+      statusCode: {
+        401: () => {
+          alert("Incorrect Login");
+        }
+      }
+    });
+  });
 });
-// var submit = selectElement("#submit");
-// var url = "/login";
-
-// submit.addEventListener("click", POSTinfo);
-
-// function POSTinfo(e) {
-//   var username = selectElement("#username").value;
-//   var password = selectElement("#password").value;
-//   var params = {
-//     user: username,
-//     pass: password
-//   };
-//   console.log(params);
-
-//   var xhr = new XMLHttpRequest();
-//   xhr.open("POST", url, true);
-//   xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-//   xhr.send(JSON.stringify(params))
-//   xhr.onreadystatechange = function() {
-//     if (xhr.readyState == 4 && xhr.status == 401) {
-//       alert("Test");
-//     }
-//   };
-
-//   e.preventDefault();
-// }

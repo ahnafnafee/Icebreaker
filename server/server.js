@@ -10,34 +10,30 @@ app.use(morgan("dev"));
 // For serving files from public dir
 app.use(express.static("public"));
 
-// create application/json parser
-var jsonParser = bodyParser.json();
+// use application/json parser
+app.use(bodyParser.json());
 
 // create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+// var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+app.get("/", (req, res) => {
+  res.render("index.html");
+});
+
+// POST /login gets urlencoded bodies
+app.post("/login", function(req, res) {
+
+  if (req.body.user == "abc" && req.body.pass == "1234") {
+    res.contentType("application/json");
+    let data = JSON.stringify("main.html");
+    res.header("Content-Length", data.length);
+    res.end(data);
+  } else {
+    res.sendStatus(401);
+  }
+});
 
 // Opening port
 app.listen(port, function() {
   console.log(`Staring server at port ${port}`);
-});
-
-// POST /login gets urlencoded bodies
-app.post("/login", urlencodedParser, function(req, res, next) {
-  console.log(req);
-  console.log(req.body);
-  //   console.log(req.body.username);
-  //   console.log(req.body.password);
-  //   //   res.redirect("main.html");
-  if (req.body.username == "abc" && req.body.password == "1234") {
-    res.redirect("main.html");
-  } else {
-    res.sendStatus(401);
-  }
-  next();
-  //   console.log(req.params.password);
-});
-
-// POST /api/users gets JSON bodies
-app.post("/api/users", jsonParser, function(req, res) {
-  // create user in req.body
 });
