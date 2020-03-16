@@ -25,7 +25,7 @@ app.post("/register", async function(req, res) {
   console.log(users);
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const user = { username: req.body.username, password: hashedPassword };
+    const user = { fullname: req.body.fullname, username: req.body.username, password: hashedPassword, email: req.body.email, dob: req.body.dob };
     users.push(user);
     res.contentType("application/json");
     let data = JSON.stringify("main.html");
