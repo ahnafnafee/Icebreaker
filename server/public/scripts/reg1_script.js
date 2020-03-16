@@ -31,7 +31,7 @@ $(function() {
     let email = $("#email");
     let dob = $("#datetime");
 
-    // console.log(JSON.stringify({ user: username.val(), pass: password.val() }));
+    console.log(JSON.stringify({ user: username.val(), pass: password.val() }));
 
     $.ajax({
       url: "/register",
@@ -45,6 +45,7 @@ $(function() {
         dob: dob.val()
       }),
       success: function(response) {
+        console.log("Test");
         window.location = response;
       },
       statusCode: {

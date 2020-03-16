@@ -3,8 +3,27 @@ let bodyParser = require("body-parser");
 let request = require("request");
 let morgan = require("morgan");
 const bcrypt = require("bcrypt");
+var mysql = require("mysql");
+var mongo = require("mongodb");
+
 let app = express();
 const port = process.env.PORT || 8080;
+
+const con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "WW#XVhyd2837KLOVTLNQ1MrT",
+  database: 'icebreaker'
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  con.query("CREATE DATABASE icebreaker", function(err, result) {
+    if (err) throw err;
+    console.log("Database created");
+  });
+});
 
 app.use(morgan("dev"));
 
@@ -25,7 +44,13 @@ app.post("/register", async function(req, res) {
   console.log(users);
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const user = { fullname: req.body.fullname, username: req.body.username, password: hashedPassword, email: req.body.email, dob: req.body.dob };
+    const user = {
+      fullname: req.body.fullname,
+      username: req.body.username,
+      password: hashedPassword,
+      email: req.body.email,
+      dob: req.body.dob
+    };
     users.push(user);
     res.contentType("application/json");
     let data = JSON.stringify("main.html");
@@ -34,6 +59,7 @@ app.post("/register", async function(req, res) {
     res.status(201).send();
   } catch {
     res.status(500).send();
+    res.redirect("register.html");
   }
   console.log(users);
 });
