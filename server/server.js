@@ -20,7 +20,7 @@ app.use(session({
 const con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Chernobyl01",
+  password: "cs375password",
   database: "icebreaker"
 });
 
@@ -144,7 +144,7 @@ app.post("/login", async function(req, res) {
         res.end(data);
         res.send("Success");
       } else {
-        res.send("Not Allowed");
+        res.send("login.html");
       }
     } catch {
       res.status(500).send();
@@ -154,8 +154,10 @@ app.post("/login", async function(req, res) {
 
 app.get('/logout', function (req,res){
   req.session.reset();
+  console.log('you logged out')
   req.session.msg = 'You logged out';
   return res.redirect('/');
+  
 })
 
 // Opening port
