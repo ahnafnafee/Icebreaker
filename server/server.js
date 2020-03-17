@@ -23,7 +23,7 @@ app.use(
 const con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Chernobyl01",
+  password: "cs375password",
   database: "icebreaker"
 });
 
@@ -55,7 +55,7 @@ app.get("/deletedb", (req, res) => {
 // Create table users
 app.get("/createusertable", (req, res) => {
   let sql =
-    "CREATE TABLE users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (username))";
+    "CREATE TABLE users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null UNIQUE, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (id))";
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
@@ -154,7 +154,9 @@ app.post("/login", async function(req, res) {
     try {
       if (await bcrypt.compare(req.body.password, password)) {
         res.contentType("application/json");
+        req.session.user = req.body.user;
         return res.redirect("/main");
+
       } else {
         res.send("The email or password is incorrect");
         return res.redirect("/login");
@@ -168,7 +170,7 @@ app.post("/login", async function(req, res) {
 // GET /logout
 app.get("/logout", function(req, res) {
   req.session.reset();
-  console.log("you logged out");
+  console.log('u be log out')
   req.session.msg = "You logged out";
   return res.redirect("/");
 });
