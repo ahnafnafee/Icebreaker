@@ -11,7 +11,7 @@
     <link rel="icon" href="images/favicon.png">
     <link href="css/reg_style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
     <title>Icebreaker - Register</title>
     <script src="scripts/reg1_script.js" defer></script>
@@ -65,7 +65,7 @@
                 <div class="container-2">
                     <h1 class="welcome">Create new<br>account</h1>
                     <div class="bg-img"></div>
-                    <form action="#" method="GET" id="form_login">
+                    <form id="form_login">
                         <div class="group" data-validate="Fullname required">
                             <input class="inp-label" id="fullname" type="text" name="fullname" placeholder="Full name"
                                 required><span class="highlight"></span><span class="bar"></span>
@@ -93,11 +93,12 @@
                             <span class="symbol s-dob"></span>
                         </div>
                         <div class="f-btn-container">
-                            <input id="submit" type="submit" class="reg-login-btn" value="Create Account" />
+                            <input id="submit" type="button" class="reg-login-btn" value="Create Account" />
                         </div>
                         <div>
                             <p class="p-need">Already have an account? <span class="forgot-reg">Log In</span></p>
                         </div>
+                        <div id="FormErrors" style="color:red"></div>
                     </form>
 
                 </div>

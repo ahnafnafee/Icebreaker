@@ -1,41 +1,45 @@
 const selectElement = s => document.querySelector(s);
 
 // Open menu on click
-selectElement('.open').addEventListener('click', () => {
-    selectElement('.nav-list').classList.add('active');
+selectElement(".open").addEventListener("click", () => {
+  selectElement(".nav-list").classList.add("active");
 });
 
 // Close menu on click
-selectElement('.close').addEventListener('click', () => {
-    selectElement('.nav-list').classList.remove('active');
+selectElement(".close").addEventListener("click", () => {
+  selectElement(".nav-list").classList.remove("active");
 });
 
 function redirectURL(e) {
-    window.location.href = "register.html";
+  window.location.href = "register.html";
 }
 
 selectElement(".forgot-reg").addEventListener("click", redirectURL);
 
+$(function() {
+  $("#submit").on("click", function(event) {
+    event.preventDefault();
 
-// var submit = selectElement("#submit");
-// var url = "/login";
+    let username = $("#username");
+    let password = $("#password");
+    console.log(JSON.stringify({ user: username.val(), pass: password.val() }));
 
-// submit.addEventListener("click", POSTinfo);
-
-// function POSTinfo(e) {
-//   var username = selectElement("#username").value;
-//   var password = selectElement("#password").value;
-//   var params = `username=${username}&password=${password}`;
-
-//   var xhr = new XMLHttpRequest();
-//   xhr.open("POST", url, true);
-//   xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-//   xhr.onreadystatechange = function() {
-//     if (xhr.readyState == 4 && xhr.status == 200) {
-//       alert(xhr.responseText);
-//     }
-//   };
-//   xhr.send(params);
-
-//   e.preventDefault();
-// }
+    $.ajax({
+      url: "/login",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({
+        username: username.val(),
+        password: password.val()
+      }),
+      success: function(response) {
+        window.location = response;
+      },
+      statusCode: {
+        401: () => {
+            alert("Unauthorized");
+        }
+    }
+    });
+  });
+});
