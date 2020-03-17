@@ -54,7 +54,7 @@ app.get("/deletedb", (req, res) => {
 // Create table users
 app.get("/createusertable", (req, res) => {
   let sql =
-    "CREATE TABLE users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (id))";
+    "CREATE TABLE users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (username))";
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
