@@ -23,7 +23,7 @@ app.use(
 const con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "cs375password",
+  password: "Chernobyl01",
   database: "icebreaker"
 });
 
@@ -89,9 +89,14 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/index.html"));
 });
 
-// GET /index
+// GET /rlogin
 app.get("/rlogin", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/wronglogin.html"));
+});
+
+// GET /account
+app.get("/account", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/userprofile.html"));
 });
 
 // GET /register
@@ -156,7 +161,6 @@ app.post("/login", async function(req, res) {
         res.contentType("application/json");
         req.session.user = req.body.user;
         return res.redirect("/main");
-
       } else {
         res.send("The email or password is incorrect");
         return res.redirect("/login");
@@ -170,7 +174,7 @@ app.post("/login", async function(req, res) {
 // GET /logout
 app.get("/logout", function(req, res) {
   req.session.reset();
-  console.log('u be log out')
+  console.log("u be log out");
   req.session.msg = "You logged out";
   return res.redirect("/");
 });

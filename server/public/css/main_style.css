@@ -325,8 +325,48 @@ nav {
     cursor: pointer;
 }
 
+/* Account styling */
+.user-info-ctn1 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.acct-dp {
+    left: 0;
+    cursor: pointer;
+    top: 0;
+    height: 80px;
+    width: auto;
+    content: url("../images/eg_user2.png");
+    z-index: 1;
+}
+
+.acct-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.acct-loc-age {
+    color: #9D9D9D;
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: lighter;
+}
+
+.user-info-ctn1-inner {
+    right: 0;
+    top: 0;
+    text-align: right;
+}
+
 /* User Info Styling */
 .user-info {
+    margin-top: 20px;
+    ;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
