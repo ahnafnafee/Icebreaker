@@ -5,9 +5,17 @@ let morgan = require("morgan");
 const bcrypt = require("bcrypt");
 var mysql = require("mysql");
 var mongo = require("mongodb");
+let session = require("client-sessions");
 
 let app = express();
 const port = process.env.PORT || 8080;
+
+app.use(session({
+  cookieName: "session",
+  secret: 'asdfasdfasdf123',
+  duration: 15*60*1000,
+  activeDuration: 5*60*1000,
+}));
 
 const con = mysql.createConnection({
   host: "localhost",
@@ -15,6 +23,8 @@ const con = mysql.createConnection({
   password: "Chernobyl01",
   database: "icebreaker"
 });
+
+
 
 con.connect(function(err) {
   if (err) throw err;
