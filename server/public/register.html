@@ -78,7 +78,7 @@
                         </div>
                         <div class="group" data-validate="Password is required">
                             <input class="inp-label" id="password" type="password" name="password"
-                                placeholder="Password" required><span class="highlight"></span><span class="bar"></span>
+                                placeholder="Password" minlength="6" maxlength="20" required><span class="highlight"></span><span class="bar"></span>
                             <span class="symbol s-pass"></span>
                         </div>
                         <div class="group" data-validate="Email required">
@@ -88,7 +88,7 @@
                         </div>
                         <div class="group" data-validate="Date of Birth required">
                             <input class="inp-label" id="datetime" type="datetime" name="dob"
-                                placeholder="Date of Birth" required><span class="highlight"></span><span
+                                placeholder="Date of Birth" required><span class="highlight" required></span><span
                                 class="bar"></span>
                             <span class="symbol s-dob"></span>
                         </div>
@@ -104,6 +104,23 @@
             </section>
         </div>
     </main>
+    <script>
+        var password=document.getElementById("password");
+        var letters = /^[0-9a-zA-Z]+$/;
+        var error=document.getElementById("FormErrors");
+        if (password.length < 6 || password.length > 20){
+            error.innerHTML=error.innerHTML+"<li>Password must be between 6 and 20 characters</li>";
+            };
+
+        if (!password.value.match(letters)){
+            error.innerHTML= error.innerHTML+"<li>Password must contain letters</li>";
+        };
+
+
+        
+    
+    </script>
+
 
     <div class="footer-container">
         <div class="footer-wave"></div>
@@ -140,7 +157,8 @@
                 </nav>
                 <p class="copyright">&copy; 2020 Icebreaker</p>
             </div>
-
+            
+            <div id="FormErrors" style="color:red" display="None"></div>
 </body>
 
 </html>
