@@ -33,7 +33,15 @@ $(function() {
         password: password.val()
       }),
       success: function(response) {
+        console.log("WORKS");
+      },
+      error: function(response) {
         alert(response);
+      },
+      statusCode: {
+        401: response => {
+          alert(response);
+        }
       }
     });
   });
