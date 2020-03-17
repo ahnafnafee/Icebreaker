@@ -6,25 +6,26 @@ const bcrypt = require("bcrypt");
 var mysql = require("mysql");
 var mongo = require("mongodb");
 let session = require("client-sessions");
+var path = require("path");
 
 let app = express();
 const port = process.env.PORT || 8080;
 
-app.use(session({
-  cookieName: "session",
-  secret: 'asdfasdfasdf123',
-  duration: 15*60*1000,
-  activeDuration: 5*60*1000,
-}));
+app.use(
+  session({
+    cookieName: "session",
+    secret: "asdfasdfasdf123",
+    duration: 15 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000
+  })
+);
 
 const con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "cs375password",
+  password: "Chernobyl01",
   database: "icebreaker"
 });
-
-
 
 con.connect(function(err) {
   if (err) throw err;
@@ -79,6 +80,7 @@ app.use(express.static("public"));
 
 // use application/json parser
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const users = [];
 
@@ -86,8 +88,7 @@ app.get("/", (req, res) => {
   res.render("index.html");
 });
 
-// POST /register
-app.post("/register", async function(req, res) {
+app.post("/register", async function(req, res, next) {
   console.log(users);
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -99,24 +100,21 @@ app.post("/register", async function(req, res) {
       dob: req.body.dob
     };
     users.push(user);
-    let sql = `insert into users (fullname, username, password, email, dob) values ("${req.body.fullname}", "${req.body.username}", "${hashedPassword}", "${req.body.email}", "${req.body.dob}")`;
-    con.query(sql, async (err, result) => {
-      if (err) throw err;
-      console.log(result);
-      console.log("User added");
-    });
-
-    res.contentType("application/json");
-    let data = JSON.stringify("main.html");
-    res.header("Content-Length", data.length);
-    res.end(data);
-
+    // let sql = `insert into users (fullname, username, password, email, dob) values ("${req.body.fullname}", "${req.body.username}", "${hashedPassword}", "${req.body.email}", "${req.body.dob}")`;
+    // con.query(sql, async (err, result) => {
+    //   if (err) throw err;
+    //   console.log(result);
+    //   console.log("User added");
+    // });
+    console.log(users);
+    res.redirect("/main");
     res.status(201).send();
   } catch {
     res.status(500).send();
     res.redirect("register.html");
   }
   console.log(users);
+  next();
 });
 
 // POST /login
@@ -152,13 +150,16 @@ app.post("/login", async function(req, res) {
   });
 });
 
-app.get('/logout', function (req,res){
+app.get("/logout", function(req, res) {
   req.session.reset();
-  console.log('you logged out')
-  req.session.msg = 'You logged out';
-  return res.redirect('/');
-  
-})
+  console.log("you logged out");
+  req.session.msg = "You logged out";
+  return res.redirect("/");
+});
+
+app.get("/main", function(req, res) {
+  res.sendFile(path.join(__dirname+'/public/main.html'));
+});
 
 // Opening port
 app.listen(port, function() {
