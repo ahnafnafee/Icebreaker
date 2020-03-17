@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
     <title>Icebreaker - Register</title>
-    <script src="scripts/reg1_script.js" defer></script>
+    <script src="scripts/test2_script.js" defer></script>
 
 </head>
 
@@ -65,20 +65,21 @@
                 <div class="container-2">
                     <h1 class="welcome">Create new<br>account</h1>
                     <div class="bg-img"></div>
-                    <form id="form_login">
+                    <form action="/register" method="POST" id="form_login">
                         <div class="group" data-validate="Fullname required">
                             <input class="inp-label" id="fullname" type="text" name="fullname" placeholder="Full name"
                                 required><span class="highlight"></span><span class="bar"></span>
                             <span class="symbol s-name"></span>
                         </div>
                         <div class="group" data-validate="Username required">
-                            <input class="inp-label" id="username" type="text" name="username" placeholder="Username"
+                            <input class="inp-label" id="username" type="text" name="username" minlength="4" maxlength="12" placeholder="Username"
                                 required><span class="highlight"></span><span class="bar"></span>
                             <span class="symbol s-username"></span>
                         </div>
                         <div class="group" data-validate="Password is required">
                             <input class="inp-label" id="password" type="password" name="password"
-                                placeholder="Password" minlength="6" maxlength="20" required><span class="highlight"></span><span class="bar"></span>
+                                placeholder="Password" minlength="6" maxlength="20" required><span
+                                class="highlight"></span><span class="bar"></span>
                             <span class="symbol s-pass"></span>
                         </div>
                         <div class="group" data-validate="Email required">
@@ -93,35 +94,17 @@
                             <span class="symbol s-dob"></span>
                         </div>
                         <div class="f-btn-container">
-                            <input id="submit" type="button" class="reg-login-btn" value="Create Account" />
+                            <input id="submit" type="submit" class="reg-login-btn" value="Create Account" />
                         </div>
                         <div>
                             <p class="p-need">Already have an account? <span class="forgot-reg">Log In</span></p>
                         </div>
-                        <div id="FormErrors" style="color:red"></div>
                     </form>
 
                 </div>
             </section>
         </div>
     </main>
-    <script>
-        var password=document.getElementById("password");
-        var letters = /^[0-9a-zA-Z]+$/;
-        var error=document.getElementById("FormErrors");
-        if (password.length < 6 || password.length > 20){
-            error.innerHTML=error.innerHTML+"<li>Password must be between 6 and 20 characters</li>";
-            };
-
-        if (!password.value.match(letters)){
-            error.innerHTML= error.innerHTML+"<li>Password must contain letters</li>";
-        };
-
-
-        
-    
-    </script>
-
 
     <div class="footer-container">
         <div class="footer-wave"></div>
@@ -158,8 +141,8 @@
                 </nav>
                 <p class="copyright">&copy; 2020 Icebreaker</p>
             </div>
-            
-            
+
+
 </body>
 
 </html>

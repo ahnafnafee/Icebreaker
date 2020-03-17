@@ -84,10 +84,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const users = [];
 
+// GET /index
 app.get("/", (req, res) => {
-  res.render("index.html");
+  res.sendFile(path.join(__dirname+'/public/index.html'));
 });
 
+// GET /register
+app.get("/register", function(req, res) {
+  res.sendFile(path.join(__dirname+'/public/register.html'));
+});
+
+// POST /register
 app.post("/register", async function(req, res, next) {
   console.log(users);
   try {
@@ -100,21 +107,26 @@ app.post("/register", async function(req, res, next) {
       dob: req.body.dob
     };
     users.push(user);
-    // let sql = `insert into users (fullname, username, password, email, dob) values ("${req.body.fullname}", "${req.body.username}", "${hashedPassword}", "${req.body.email}", "${req.body.dob}")`;
-    // con.query(sql, async (err, result) => {
-    //   if (err) throw err;
-    //   console.log(result);
-    //   console.log("User added");
-    // });
+    let sql = `insert into users (fullname, username, password, email, dob) values ("${req.body.fullname}", "${req.body.username}", "${hashedPassword}", "${req.body.email}", "${req.body.dob}")`;
+    con.query(sql, async (err, result) => {
+      if (err) throw err;
+      console.log(result);
+      console.log("User added");
+    });
     console.log(users);
-    res.redirect("/main");
     res.status(201).send();
+    return res.redirect("/main");
   } catch {
     res.status(500).send();
-    res.redirect("register.html");
+    return res.redirect("/register");
   }
   console.log(users);
   next();
+});
+
+// GET /login
+app.get("/login", function(req, res) {
+  res.sendFile(path.join(__dirname+'/public/login.html'));
 });
 
 // POST /login
@@ -150,6 +162,7 @@ app.post("/login", async function(req, res) {
   });
 });
 
+// GET /logout
 app.get("/logout", function(req, res) {
   req.session.reset();
   console.log("you logged out");
