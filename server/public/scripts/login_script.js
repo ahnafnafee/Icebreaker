@@ -15,34 +15,3 @@ function redirectURL(e) {
 }
 
 selectElement(".forgot-reg").addEventListener("click", redirectURL);
-
-$(function() {
-  $("#submit").on("submit", function(event) {
-    event.preventDefault();
-
-    let username = $("#username");
-    let password = $("#password");
-    console.log(JSON.stringify({ user: username.val(), pass: password.val() }));
-
-    $.ajax({
-      url: "/login",
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify({
-        username: username.val(),
-        password: password.val()
-      }),
-      success: function(response) {
-        console.log("WORKS");
-      },
-      error: function(response) {
-        alert(response);
-      },
-      statusCode: {
-        401: response => {
-          alert(response);
-        }
-      }
-    });
-  });
-});

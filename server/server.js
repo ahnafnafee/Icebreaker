@@ -86,12 +86,17 @@ const users = [];
 
 // GET /index
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname+'/public/index.html'));
+  res.sendFile(path.join(__dirname + "/public/index.html"));
+});
+
+// GET /index
+app.get("/rlogin", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/wronglogin.html"));
 });
 
 // GET /register
 app.get("/register", function(req, res) {
-  res.sendFile(path.join(__dirname+'/public/register.html'));
+  res.sendFile(path.join(__dirname + "/public/register.html"));
 });
 
 // POST /register
@@ -124,11 +129,13 @@ app.post("/register", async function(req, res, next) {
 
 // GET /login
 app.get("/login", function(req, res) {
-  res.sendFile(path.join(__dirname+'/public/login.html'));
+  res.sendFile(path.join(__dirname + "/public/login.html"));
 });
 
 // POST /login
 app.post("/login", async function(req, res) {
+  console.log(req.body);
+  console.log("POST LOGIN CONN");
   console.log(users);
   let sql = `select * from users where username = "${req.body.username}"`;
 
@@ -138,7 +145,7 @@ app.post("/login", async function(req, res) {
     if (err) throw err;
     console.log(results);
     if (results === undefined || results.length == 0) {
-      return res.status(401).send("Cannot find user");
+      return res.redirect("/rlogin");
     }
     let username = results[0].username;
     let password = results[0].password;
@@ -149,7 +156,7 @@ app.post("/login", async function(req, res) {
         res.contentType("application/json");
         return res.redirect("/main");
       } else {
-        res.send("The email or password is incorrect")
+        res.send("The email or password is incorrect");
         return res.redirect("/login");
       }
     } catch {
@@ -167,7 +174,7 @@ app.get("/logout", function(req, res) {
 });
 
 app.get("/main", function(req, res) {
-  res.sendFile(path.join(__dirname+'/public/main.html'));
+  res.sendFile(path.join(__dirname + "/public/main.html"));
 });
 
 // Opening port

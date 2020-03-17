@@ -191,6 +191,17 @@ nav {
     background-size: cover;
 }
 
+.error-ctn {
+    height: auto;
+    font-size: 14px;
+    padding: 10px;
+    background-color: wheat;
+    border-radius: 5px;
+    text-align: center;
+    color: rgb(99, 68, 12);
+    margin-bottom: 20px;
+}
+
 
 #form_login {
     width: 100%;
