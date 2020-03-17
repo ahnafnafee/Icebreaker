@@ -12,16 +12,33 @@ const port = process.env.PORT || 8080;
 const con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "WW#XVhyd2837KLOVTLNQ1MrT",
-  database: 'icebreaker'
+  password: "Chernobyl01",
+  database: "icebreaker"
 });
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("Connected!");
-  con.query("CREATE DATABASE icebreaker", function(err, result) {
+  console.log("DB Connected!");
+});
+
+// Create DB
+app.get("/createdb", (req, res) => {
+  let sql = "CREATE DATABASE icebreaker";
+  con.query(sql, (err, result) => {
     if (err) throw err;
-    console.log("Database created");
+    console.log(result);
+    res.send("Database created");
+  });
+});
+
+// Create table
+app.get("/createUserTable", (req, res) => {
+  let sql =
+    "CREATE TABLE users (id int AUTO_INCREMENT, fullname varchar(255), username varchar(255), password varchar(255), email varchar(255), dob varchar(255), primary key(id))";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send("Users table created");
   });
 });
 
