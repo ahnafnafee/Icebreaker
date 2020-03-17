@@ -120,8 +120,6 @@ app.post("/register", async function(req, res, next) {
     res.status(500).send();
     return res.redirect("/register");
   }
-  console.log(users);
-  next();
 });
 
 // GET /login
@@ -149,12 +147,10 @@ app.post("/login", async function(req, res) {
     try {
       if (await bcrypt.compare(req.body.password, password)) {
         res.contentType("application/json");
-        let data = JSON.stringify("main.html");
-        res.header("Content-Length", data.length);
-        res.end(data);
-        res.send("Success");
+        return res.redirect("/main");
       } else {
-        res.send("login.html");
+        res.send("The email or password is incorrect")
+        return res.redirect("/login");
       }
     } catch {
       res.status(500).send();

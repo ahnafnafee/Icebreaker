@@ -11,13 +11,13 @@ selectElement(".close").addEventListener("click", () => {
 });
 
 function redirectURL(e) {
-  window.location.href = "register.html";
+  window.location.href = "/register";
 }
 
 selectElement(".forgot-reg").addEventListener("click", redirectURL);
 
 $(function() {
-  $("#submit").on("click", function(event) {
+  $("#submit").on("submit", function(event) {
     event.preventDefault();
 
     let username = $("#username");
@@ -33,13 +33,8 @@ $(function() {
         password: password.val()
       }),
       success: function(response) {
-        window.location = response;
-      },
-      statusCode: {
-        401: () => {
-            alert("Unauthorized");
-        }
-    }
+        alert(response);
+      }
     });
   });
 });
