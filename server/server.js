@@ -31,14 +31,34 @@ app.get("/createdb", (req, res) => {
   });
 });
 
-// Create table
-app.get("/createUserTable", (req, res) => {
+// Delete DB
+app.get("/deletedb", (req, res) => {
+  let sql = "DROP DATABASE icebreaker";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send("Database deleted");
+  });
+});
+
+// Create table users
+app.get("/createusertable", (req, res) => {
   let sql =
-    "CREATE TABLE users (id int AUTO_INCREMENT, fullname varchar(255), username varchar(255), password varchar(255), email varchar(255), dob varchar(255), primary key(id))";
+    "CREATE TABLE users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (id))";
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send("Users table created");
+  });
+});
+
+// Drop table users
+app.get("/deleteusertable", (req, res) => {
+  let sql = "DROP TABLE users";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send("Users table deleted");
   });
 });
 
@@ -69,10 +89,18 @@ app.post("/register", async function(req, res) {
       dob: req.body.dob
     };
     users.push(user);
+    let sql = `insert into users (fullname, username, password, email, dob) values ("${req.body.fullname}", "${req.body.username}", "${hashedPassword}", "${req.body.email}", "${req.body.dob}")`;
+    con.query(sql, async (err, result) => {
+      if (err) throw err;
+      console.log(result);
+      console.log("User added");
+    });
+
     res.contentType("application/json");
     let data = JSON.stringify("main.html");
     res.header("Content-Length", data.length);
     res.end(data);
+
     res.status(201).send();
   } catch {
     res.status(500).send();
@@ -84,23 +112,34 @@ app.post("/register", async function(req, res) {
 // POST /login
 app.post("/login", async function(req, res) {
   console.log(users);
-  const user = users.find(user => user.username === req.body.username);
-  if (user == null) {
-    return res.status(401).send("Cannot find user");
-  }
-  try {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      res.contentType("application/json");
-      let data = JSON.stringify("main.html");
-      res.header("Content-Length", data.length);
-      res.end(data);
-      res.send("Success");
-    } else {
-      res.send("Not Allowed");
+  let sql = `select * from users where username = "${req.body.username}"`;
+
+  console.log(sql);
+
+  con.query(sql, async (err, results) => {
+    if (err) throw err;
+    console.log(results);
+    if (results === undefined || results.length == 0) {
+      return res.status(401).send("Cannot find user");
     }
-  } catch {
-    res.status(500).send();
-  }
+    let username = results[0].username;
+    let password = results[0].password;
+    console.log(username);
+    console.log(password);
+    try {
+      if (await bcrypt.compare(req.body.password, password)) {
+        res.contentType("application/json");
+        let data = JSON.stringify("main.html");
+        res.header("Content-Length", data.length);
+        res.end(data);
+        res.send("Success");
+      } else {
+        res.send("Not Allowed");
+      }
+    } catch {
+      res.status(500).send();
+    }
+  });
 });
 
 // Opening port
