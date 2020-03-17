@@ -11,6 +11,8 @@ var path = require("path");
 let app = express();
 const port = process.env.PORT || 8080;
 
+let loggedUser = [];
+
 app.use(
   session({
     cookieName: "session",
@@ -99,6 +101,18 @@ app.get("/account", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/userprofile.html"));
 });
 
+// GET /personalinfo
+app.get("/personalinfo", (req, res) => {
+  let sql = `select * from users where username = "${loggedUser[0]}"`;
+  con.query(sql, async (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    console.log("Username queried");
+    res.type("application/json");
+    res.send(result);
+  });
+});
+
 // GET /register
 app.get("/register", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/register.html"));
@@ -124,6 +138,7 @@ app.post("/register", async function(req, res, next) {
       console.log("User added");
     });
     console.log(users);
+    loggedUser.push(req.body.username);
     res.status(201).send();
     return res.redirect("/main");
   } catch {
@@ -159,6 +174,7 @@ app.post("/login", async function(req, res) {
     try {
       if (await bcrypt.compare(req.body.password, password)) {
         res.contentType("application/json");
+        loggedUser.push(req.body.username);
         req.session.user = req.body.user;
         return res.redirect("/main");
       } else {
@@ -174,6 +190,7 @@ app.post("/login", async function(req, res) {
 // GET /logout
 app.get("/logout", function(req, res) {
   req.session.reset();
+  loggedUser.pop();
   console.log("u be log out");
   req.session.msg = "You logged out";
   return res.redirect("/");
