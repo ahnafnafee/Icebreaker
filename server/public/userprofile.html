@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Questrial|Raleway|Source+Sans+Pro&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo:900&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.png">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <title>Icebreaker - Profile</title>
+    <link href="css/main_style.css" rel="stylesheet" />
+    <script src="scripts/profile_script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="container-1">
+            <nav>
+                <div class="menu-outline empty"></div>
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img id="logo" src="images/ic_logo.png" alt="">
+                    </a>
+                </div>
+
+                <div class="menu-icons open">
+                    <span class="menu-outline"></span>
+                </div>
+
+                <ul class="nav-list">
+                    <div class="menu-icons close">
+                        <span class="close-outline"></span>
+                    </div>
+                    <li class="nav-item first">
+                        <a href="#" class="nav-link">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">FEATURES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">CONTACT US</a>
+                    </li>
+                    <li class="nav-item login">
+                        <a href="login.html" class="nav-link">LOGIN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="register.html" class="nav-link reg-btn">SIGN UP</a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+    </header>
+    <main>
+    <div class="user-info">
+        <h1 class="Profile">My Profile</h1>
+        <h2 class="user-name">Alyssa Cair</h2>
+        <h3 class="user-loc-age">22 yrs • Greater Philly</h3>
+        <h4>Photos</h4>
+        <div class="carousel-ctn">
+            <div class="user-dp"></div>
+            <div class="carousel" data-flickity='{ "lazyLoad": 1 }'>
+                <div class="carousel-cell">
+                    <img class="carousel-cell-image" data-flickity-lazyload="images/eg_1.jpg" />
+                </div>
+                <div class="carousel-cell">
+                    <img class="carousel-cell-image" data-flickity-lazyload="images/eg_2.jpg" />
+                </div>
+                <div class="carousel-cell">
+                    <img class="carousel-cell-image" data-flickity-lazyload="images/eg_3.jpg" />
+                </div>
+            </div>
+        </div>
+        <h5>Interests</h5>
+        <div class="chip-grp">
+            <div class="chip">Painting</div>
+            <div class="chip">Singing</div>
+            <div class="chip">Hiking</div>
+        </div>
+        <h5 class="aboutme-title">About Me</h5>
+        <p class="aboutme-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi iusto
+            quibusdam totam, ab deserunt quia. Vitae iste neque, ipsum corrupti optio minus, maiores
+            quia adipisci eius nobis, eligendi quaerat aperiam</p>
+
+    </div>
+
+
+    </main>
+    <div class="footer-container">
+        <div class="footer-wave"></div>
+        <footer>
+            <div class="site-footer">
+                <nav class="site-footer--nav">
+                    <div class="site-footer--col">
+                        <h5 class="footer-col--title-1">
+                            EXPLORE
+                        </h5>
+                        <ul class="footer-col--list-1">
+                            <li class="footer-col--item-1">
+                                <a href="#" class="footer-item-link">About</a>
+                            </li>
+                            <li class="footer-col--item-1">
+                                <a href="#" class="footer-item-link">Features</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="site-footer--col">
+                        <h5 class="footer-col--title-2">
+                            GET SUPPORT
+                        </h5>
+                        <ul class="footer-col--list-2">
+                            <li class="footer-col--item-2">
+                                <a href="#" class="footer-item-link">Contact Us</a>
+                            </li>
+                            <li class="footer-col--item-2">
+                                <a href="#" class="footer-item-link">FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <p class="copyright">&copy; 2020 Icebreaker</p>
+            </div>
+</body>
+</html>
