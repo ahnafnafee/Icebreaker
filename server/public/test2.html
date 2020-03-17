@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script type="text/javascript">
+    </script>
+    <style type="text/css">
+        /* external css: flickity.css, fullscreen.css */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        .carousel {
+            background: #222;
+        }
+
+        .carousel-cell {
+            width: 100%;
+            height: 400px;
+            margin-right: 10px;
+            /* center images in cells with flexbox */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel.is-fullscreen .carousel-cell {
+            height: 100%;
+        }
+
+        .carousel-cell-image {
+            display: block;
+            max-width: 100%;
+        }
+
+        .carousel.is-fullscreen .carousel-cell-image {
+            object-fit: none;
+        }
+
+        .flickity-page-dots {
+            bottom: 0px;
+            padding-bottom: 5px;
+            ;
+        }
+
+        /* no circle */
+        .flickity-button {
+            background: transparent;
+        }
+
+        .flickity-page-dots .dot {
+            width: 8px;
+            height: 8px;
+            opacity: 1;
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .flickity-page-dots .dot.is-selected {
+            background: white;
+        }
+
+        /* big previous & next buttons */
+        .flickity-prev-next-button {
+            width: 50px;
+            height: 50px;
+        }
+
+        /* icon color */
+        .flickity-button-icon {
+            fill: rgb(255, 255, 255, 0.9);
+        }
+
+        .flickity-button:hover {
+            background: rgb(255, 255, 255, 0.05);
+        }
+
+        /* hide disabled button */
+        .flickity-button:disabled {
+            display: none;
+        }
+
+        .carousel-image {
+            display: block;
+            object-fit: cover;
+            /* set min-width,
+               allow images to determine cell width */
+          }
+          
+    </style>
+</head>
+
+<body>
+    <h1>Hello</h1>
+
+    <h1>Flickity - fullscreen images wide</h1>
+
+    <!-- Flickity HTML init -->
+    <div class="carousel" data-flickity='{ "fullscreen": true, "lazyLoad": 1 }'>
+        <div class="carousel-cell">
+            <img class="carousel-cell-image" data-flickity-lazyload="images/eg_1.jpg" />
+        </div>
+        <div class="carousel-cell">
+            <img class="carousel-cell-image" data-flickity-lazyload="images/eg_2.jpg" />
+        </div>
+        <div class="carousel-cell">
+            <img class="carousel-cell-image" data-flickity-lazyload="images/eg_3.jpg" />
+        </div>
+    </div>
+
+
+</body>
+
+</html>
