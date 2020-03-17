@@ -327,6 +327,8 @@ nav {
 
 /* Account styling */
 .user-info-ctn1 {
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 16px;
     margin-bottom: 16px;
     display: flex;
@@ -566,6 +568,10 @@ nav {
         width: 90%;
     }
 
+    .user-info-ctn1 {
+        width: 90%;
+    }
+
     /* Carousel styling */
 
     .carousel-cell {
@@ -650,6 +656,10 @@ nav {
     }
 
     .container-2 {
+        width: 70%;
+    }
+
+    .user-info-ctn1 {
         width: 70%;
     }
 
