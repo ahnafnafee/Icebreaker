@@ -152,6 +152,12 @@ app.post("/login", async function(req, res) {
   });
 });
 
+app.get('/logout', function (req,res){
+  req.session.reset();
+  req.session.msg = 'You logged out';
+  return res.redirect('/');
+})
+
 // Opening port
 app.listen(port, function() {
   console.log(`Staring server at port ${port}`);
