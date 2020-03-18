@@ -234,12 +234,16 @@ app.post("/reg1", upload.single("userDp"), (req, res, next) => {
   con.query(sql, async (err, results) => {
     if (err) throw err;
     console.log(results);
+    console.log(1);
     if (results === undefined || results.length == 0) {
       return res.redirect("/");
+      console.log(2);
     }
+    console.log(3);
     return res.redirect("/main");
   });
 
+  console.log(4);
   return res.redirect("/login");
 });
 

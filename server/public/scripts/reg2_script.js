@@ -109,7 +109,7 @@ async function submitForm() {
     contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
     processData: false, // NEEDED, DON'T OMIT THIS
     success: function(response) {
-        console.log("Hooray");
+        var x =1;
     }
     // ... Other options like success and etc
   });
