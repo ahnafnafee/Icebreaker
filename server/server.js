@@ -18,7 +18,7 @@ app.use(
     username: "",
     cookieName: "session",
     secret: "asdfasdfasdf123",
-    duration: 15 * 60 * 1000,
+    duration: 2 * 24 * 60 * 60 * 1000,
     activeDuration: 5 * 60 * 1000
   })
 );
