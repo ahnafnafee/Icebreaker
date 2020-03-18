@@ -11,6 +11,6 @@ selectElement(".close").addEventListener("click", () => {
 });
 
 $("#datetime").flatpickr({
-  dateFormat: "d.m.Y",
+  dateFormat: "m.d.Y",
   maxDate: "today"
 });

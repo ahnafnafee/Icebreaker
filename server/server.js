@@ -11,6 +11,8 @@ var path = require("path");
 let app = express();
 const port = process.env.PORT || 8080;
 
+let loggedUser = [];
+
 app.use(
   session({
     cookieName: "session",
@@ -55,7 +57,7 @@ app.get("/deletedb", (req, res) => {
 // Create table users
 app.get("/createusertable", (req, res) => {
   let sql =
-    "CREATE TABLE users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null UNIQUE, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (id))";
+    "CREATE TABLE users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null UNIQUE, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (username))";
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
@@ -99,6 +101,18 @@ app.get("/account", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/userprofile.html"));
 });
 
+// GET /personalinfo
+app.get("/personalinfo", (req, res) => {
+  let sql = `select * from users where username = "${loggedUser[0]}"`;
+  con.query(sql, async (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    console.log("Username queried");
+    res.type("application/json");
+    res.send(result);
+  });
+});
+
 // GET /register
 app.get("/register", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/register.html"));
@@ -122,12 +136,11 @@ app.post("/register", async function(req, res, next) {
       if (err) throw err;
       console.log(result);
       console.log("User added");
+      console.log(users);
+      loggedUser.push(req.body.username);
+      return res.redirect("/main");
     });
-    console.log(users);
-    res.status(201).send();
-    return res.redirect("/main");
   } catch {
-    res.status(500).send();
     return res.redirect("/register");
   }
 });
@@ -159,8 +172,11 @@ app.post("/login", async function(req, res) {
     try {
       if (await bcrypt.compare(req.body.password, password)) {
         res.contentType("application/json");
+
+        loggedUser.push(req.body.username);
         req.session.user = req.body.user;
         return res.redirect("/main");
+
       } else {
         res.send("The email or password is incorrect");
         return res.redirect("/login");
@@ -174,13 +190,21 @@ app.post("/login", async function(req, res) {
 // GET /logout
 app.get("/logout", function(req, res) {
   req.session.reset();
+  loggedUser.pop();
   console.log("u be log out");
   req.session.msg = "You logged out";
   return res.redirect("/");
 });
 
 app.get("/main", function(req, res) {
-  res.sendFile(path.join(__dirname + "/public/main.html"));
+
+  // if(!req.session.user){
+  //   req.session.msg = 'Please log in to gain access.'
+  //   return res.redirect('/');
+  // }
+
+    res.sendFile(path.join(__dirname+'/public/main.html'));
+
 });
 
 // Opening port
