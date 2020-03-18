@@ -11,8 +11,6 @@ var path = require("path");
 let app = express();
 const port = process.env.PORT || 8080;
 
-let loggedUser = [];
-
 app.use(
   session({
     username: "",
@@ -58,15 +56,13 @@ app.get("/deletedb", (req, res) => {
 // Create table users
 app.get("/createusertable", (req, res) => {
   let sql =
-
-    "CREATE TABLE IF NOT EXISTS users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null UNIQUE, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (username))";
+    "CREATE TABLE IF NOT EXISTS users (fullname varchar(255) not null, username varchar(255) not null UNIQUE, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (username))";
 
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send("Users table created");
   });
-
 });
 
 // Drop table users
@@ -83,6 +79,7 @@ app.use(morgan("dev"));
 
 // For serving files from public dir
 app.use(express.static("public"));
+app.use(express.static("uploads"));
 
 // use application/json parser
 app.use(bodyParser.json());
@@ -119,7 +116,7 @@ app.get("/account", (req, res) => {
 
 // GET /personalinfo
 app.get("/personalinfo", (req, res) => {
-  let sql = `select * from users where username = "${loggedUser[0]}"`;
+  let sql = `select * from users where username = "${req.session.username}"`;
   con.query(sql, async (err, result) => {
     if (err) throw err;
     console.log(result);
@@ -152,8 +149,10 @@ app.post("/register", async function(req, res, next) {
       if (err) throw err;
       console.log(result);
       console.log("User added");
+      let sesh = req.body.username;
+      req.session.username = sesh;
+      req.session.msg = "You are logged in";
       console.log(users);
-      loggedUser.push(req.body.username);
       return res.redirect("/main");
     });
   } catch {
@@ -189,14 +188,12 @@ app.post("/login", async function(req, res) {
       if (await bcrypt.compare(req.body.password, password)) {
         res.contentType("application/json");
 
-        loggedUser.push(req.body.username);
-         var sesh = req.body.username;
-         req.session.username = sesh;
-         req.session.msg = "You are logged in";
-         console.log(req.session)
-         console.log('START HERE' + sesh +'END HERE')
+        let sesh = req.body.username;
+        req.session.username = sesh;
+        req.session.msg = "You are logged in";
+        console.log(req.session);
+        console.log("START HERE" + sesh + "END HERE");
         return res.redirect("/main");
-
       } else {
         res.send("The email or password is incorrect");
         return res.redirect("/login");
@@ -210,27 +207,25 @@ app.post("/login", async function(req, res) {
 // GET /logout
 app.get("/logout", function(req, res) {
   req.session.reset();
-  loggedUser.pop();
-  console.log("u be log out");
-  req.session.msg = "You logged out";
+  req.session.msg = "User logged out";
   return res.redirect("/");
 });
 
+// GET /main
 app.get("/main", function(req, res) {
-
-  if(!req.session.username){
-    req.session.msg = 'Please log in to gain access.';
-    return res.redirect('/login');
+  console.log(req.session.username);
+  if (!req.session.username) {
+    req.session.msg = "User needs to be logged in";
+    return res.redirect("/login");
   }
 
-    res.sendFile(path.join(__dirname+'/public/main.html'));
-
+  res.sendFile(path.join(__dirname + "/public/main.html"));
 });
 
-app.get("/testsession", (req, res) => {
-  console.log(req.session)
+app.get("/testsession", (req, res, next) => {
+  console.log(req.session);
+  next();
 });
-
 
 // Opening port
 app.listen(port, function() {
