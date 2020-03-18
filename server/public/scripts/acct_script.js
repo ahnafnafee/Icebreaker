@@ -16,7 +16,19 @@ $(document).ready(function() {
     type: "GET",
     context: document.body,
     success: function(response) {
-        $(".acct-name").html(response[0].fullname);
+      $(".acct-name").html(response[0].fullname);
+      $(".acct-loc-age").html(getAge(response[0].dob) + " • Greater Philly");
     }
   });
 });
+
+function getAge(dateString) {
+  var today = new Date();
+  var birthDate = new Date(dateString);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}

@@ -37,7 +37,7 @@ con.connect(function(err) {
 
 // Create DB
 app.get("/createdb", (req, res) => {
-  let sql = "CREATE DATABASE icebreaker";
+  let sql = "CREATE DATABASE IF NOT EXISTS icebreaker;";
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
@@ -58,7 +58,8 @@ app.get("/deletedb", (req, res) => {
 // Create table users
 app.get("/createusertable", (req, res) => {
   let sql =
-    "CREATE TABLE users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null UNIQUE, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (id))";
+
+    "CREATE TABLE IF NOT EXISTS users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null UNIQUE, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (username))";
 
   con.query(sql, (err, result) => {
     if (err) throw err;
@@ -139,13 +140,11 @@ app.post("/register", async function(req, res, next) {
       if (err) throw err;
       console.log(result);
       console.log("User added");
+      console.log(users);
+      loggedUser.push(req.body.username);
+      return res.redirect("/main");
     });
-    console.log(users);
-    loggedUser.push(req.body.username);
-    res.status(201).send();
-    return res.redirect("/main");
   } catch {
-    res.status(500).send();
     return res.redirect("/register");
   }
 });
