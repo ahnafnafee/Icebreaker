@@ -11,6 +11,8 @@ var path = require("path");
 let app = express();
 const port = process.env.PORT || 8080;
 
+let loggedUser = [];
+
 app.use(
   session({
     cookieName: "session",
@@ -86,12 +88,34 @@ const users = [];
 
 // GET /index
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname+'/public/index.html'));
+  res.sendFile(path.join(__dirname + "/public/index.html"));
+});
+
+// GET /rlogin
+app.get("/rlogin", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/wronglogin.html"));
+});
+
+// GET /account
+app.get("/account", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/userprofile.html"));
+});
+
+// GET /personalinfo
+app.get("/personalinfo", (req, res) => {
+  let sql = `select * from users where username = "${loggedUser[0]}"`;
+  con.query(sql, async (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    console.log("Username queried");
+    res.type("application/json");
+    res.send(result);
+  });
 });
 
 // GET /register
 app.get("/register", function(req, res) {
-  res.sendFile(path.join(__dirname+'/public/register.html'));
+  res.sendFile(path.join(__dirname + "/public/register.html"));
 });
 
 // POST /register
@@ -114,6 +138,7 @@ app.post("/register", async function(req, res, next) {
       console.log("User added");
     });
     console.log(users);
+    loggedUser.push(req.body.username);
     res.status(201).send();
     return res.redirect("/main");
   } catch {
@@ -124,11 +149,13 @@ app.post("/register", async function(req, res, next) {
 
 // GET /login
 app.get("/login", function(req, res) {
-  res.sendFile(path.join(__dirname+'/public/login.html'));
+  res.sendFile(path.join(__dirname + "/public/login.html"));
 });
 
 // POST /login
 app.post("/login", async function(req, res) {
+  console.log(req.body);
+  console.log("POST LOGIN CONN");
   console.log(users);
   let sql = `select * from users where username = "${req.body.username}"`;
 
@@ -138,7 +165,7 @@ app.post("/login", async function(req, res) {
     if (err) throw err;
     console.log(results);
     if (results === undefined || results.length == 0) {
-      return res.status(401).send("Cannot find user");
+      return res.redirect("/rlogin");
     }
     let username = results[0].username;
     let password = results[0].password;
@@ -147,10 +174,13 @@ app.post("/login", async function(req, res) {
     try {
       if (await bcrypt.compare(req.body.password, password)) {
         res.contentType("application/json");
-        return res.redirect("/main");
+
+        loggedUser.push(req.body.username);
         req.session.user = req.body.user;
+        return res.redirect("/main");
+
       } else {
-        res.send("The email or password is incorrect")
+        res.send("The email or password is incorrect");
         return res.redirect("/login");
       }
     } catch {
@@ -162,18 +192,21 @@ app.post("/login", async function(req, res) {
 // GET /logout
 app.get("/logout", function(req, res) {
   req.session.reset();
-  console.log('u be log out')
+  loggedUser.pop();
+  console.log("u be log out");
   req.session.msg = "You logged out";
   return res.redirect("/");
 });
 
 app.get("/main", function(req, res) {
+
   // if(!req.session.user){
   //   req.session.msg = 'Please log in to gain access.'
   //   return res.redirect('/');
   // }
 
     res.sendFile(path.join(__dirname+'/public/main.html'));
+
 });
 
 // Opening port

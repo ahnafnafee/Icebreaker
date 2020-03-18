@@ -10,8 +10,13 @@ selectElement(".close").addEventListener("click", () => {
   selectElement(".nav-list").classList.remove("active");
 });
 
-function redirectURL(e) {
-  window.location.href = "/register";
-}
-
-selectElement(".forgot-reg").addEventListener("click", redirectURL);
+$(document).ready(function() {
+  $.ajax({
+    url: "/personalinfo",
+    type: "GET",
+    context: document.body,
+    success: function(response) {
+        $(".acct-name").html(response[0].fullname);
+    }
+  });
+});
