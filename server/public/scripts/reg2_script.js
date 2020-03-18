@@ -104,12 +104,15 @@ async function submitForm() {
   $.ajax({
     url: "/reg1",
     data: formData,
-    method: 'POST',
-    type: 'POST',
+    method: "POST",
+    type: "POST",
     contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
     processData: false, // NEEDED, DON'T OMIT THIS
-    success: function(response) {
-        var x =1;
+    success: function(data) {
+        window.location.href = "/main";
+    },
+    error: (err) => {
+        console.log(err);
     }
     // ... Other options like success and etc
   });

@@ -220,14 +220,7 @@ app.post("/reg1", upload.single("userDp"), (req, res, next) => {
   console.log(req.file);
   console.log(req.body);
   let sesh = req.session.username;
-
-  // let img = fs.readFileSync(req.files[i].path);
-  //   let encode_img = img.toString("base64");
-  //   var finalImg = {
-  //     contentType: req.files[i].mimetype,
-  //     path: req.files[i].path,
-  //     image: new Buffer(encode_img, "base64")
-  //   };
+  console.log(sesh);
 
   let sql = `insert into userinfo (username, userdesc, userdp) values ("${sesh}", "${req.body.userDesc}", "/uploads/${req.file.filename}")`;
 
@@ -236,15 +229,12 @@ app.post("/reg1", upload.single("userDp"), (req, res, next) => {
     console.log(results);
     console.log(1);
     if (results === undefined || results.length == 0) {
-      return res.redirect("/");
       console.log(2);
+      return res.redirect("/");
     }
     console.log(3);
     return res.redirect("/main");
   });
-
-  console.log(4);
-  return res.redirect("/login");
 });
 
 // GET /login
