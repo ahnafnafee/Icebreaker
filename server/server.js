@@ -2,11 +2,11 @@ let express = require("express");
 let bodyParser = require("body-parser");
 let request = require("request");
 let morgan = require("morgan");
-const bcrypt = require("bcrypt");
-var mysql = require("mysql");
-var mongo = require("mongodb");
+let bcrypt = require("bcrypt");
+let mysql = require("mysql");
 let session = require("client-sessions");
-var path = require("path");
+let path = require("path");
+let fs = require('fs');
 
 let app = express();
 const port = process.env.PORT || 8080;
