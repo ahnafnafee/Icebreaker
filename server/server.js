@@ -136,13 +136,11 @@ app.post("/register", async function(req, res, next) {
       if (err) throw err;
       console.log(result);
       console.log("User added");
+      console.log(users);
+      loggedUser.push(req.body.username);
+      return res.redirect("/main");
     });
-    console.log(users);
-    loggedUser.push(req.body.username);
-    res.status(201).send();
-    return res.redirect("/main");
   } catch {
-    res.status(500).send();
     return res.redirect("/register");
   }
 });
