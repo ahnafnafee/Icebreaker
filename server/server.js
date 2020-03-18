@@ -207,8 +207,8 @@ app.get("/logout", function(req, res) {
 app.get("/main", function(req, res) {
 
   if(!req.session.username){
-    req.session.msg = 'Please log in to gain access.'
-    return res.redirect('/');
+    req.session.msg = 'Please log in to gain access.';
+    return res.redirect('/login');
   }
 
     res.sendFile(path.join(__dirname+'/public/main.html'));
