@@ -353,6 +353,7 @@ nav {
     height: 80px;
     width: 80px;
     margin-right: 10px;
+    margin-bottom: 16px;
     object-fit: cover;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 2px 2px 36px -14px rgba(0, 0, 0, 0.75);

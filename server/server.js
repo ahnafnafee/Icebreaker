@@ -87,7 +87,7 @@ app.get("/createusertable", (req, res) => {
 // Create table users
 app.get("/createuserinfotable", (req, res) => {
   let sql =
-    "CREATE TABLE IF NOT EXISTS userinfo (username varchar(255) not null UNIQUE, userdesc varchar(255), userdp varchar(255) not null, primary key (username))";
+    "CREATE TABLE IF NOT EXISTS userinfo (username varchar(255) not null UNIQUE, userdesc varchar(255), userdp varchar(255) not null, imgArr varchar(1024), primary key (username))";
 
   con.query(sql, (err, result) => {
     if (err) throw err;
@@ -107,33 +107,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const users = [];
-
-app.post("/tests", upload.array("imgArr", 5), (req, res, next) => {
-  const files = req.files;
-
-  if (!files) {
-    const error = new Error("Please choose files");
-    error.httpStatusCode = 400;
-    return next(error);
-  }
-
-  for (var i = 0; i < files.length; i++) {
-    let img = fs.readFileSync(req.files[i].path);
-    let encode_img = img.toString("base64");
-    var finalImg = {
-      contentType: req.files[i].mimetype,
-      path: req.files[i].path,
-      image: new Buffer(encode_img, "base64")
-    };
-    console.log(req.files[i]);
-  }
-
-  console.log(req);
-  console.log(req.files);
-  console.log(req.body);
-});
-
-// userdp:: req.file.path
 
 // GET /index
 app.get("/", (req, res) => {
@@ -222,7 +195,7 @@ app.post("/reg1", upload.single("userDp"), (req, res, next) => {
   let sesh = req.session.username;
   console.log(sesh);
 
-  let sql = `insert into userinfo (username, userdesc, userdp) values ("${sesh}", "${req.body.userDesc}", "/uploads/${req.file.filename}")`;
+  let sql = `insert into userinfo (username, userdesc, userdp, imgArr) values ("${sesh}", "${req.body.userDesc}", "/uploads/${req.file.filename}", "")`;
 
   con.query(sql, async (err, results) => {
     if (err) throw err;
@@ -235,6 +208,53 @@ app.post("/reg1", upload.single("userDp"), (req, res, next) => {
     console.log(3);
     return res.redirect("/main");
   });
+});
+
+// POST /reg2
+app.post("/reg2", upload.array("imgArr[]", 5), (req, res, next) => {
+  const files = req.files;
+  console.log(files);
+
+  if (!files) {
+    const error = new Error("Please choose files");
+    error.httpStatusCode = 400;
+    return next(error);
+  }
+
+  let fArr = [];
+
+  for (var i = 0; i < files.length; i++) {
+    fArr.push(`/uploads/${req.files[i].path}`)
+    let img = fs.readFileSync(req.files[i].path);
+    let encode_img = img.toString("base64");
+    var finalImg = {
+      contentType: req.files[i].mimetype,
+      path: req.files[i].path,
+      image: new Buffer(encode_img, "base64")
+    };
+    console.log(req.files[i]);
+  }
+
+  let sesh = req.session.username;
+  let sql = `update userinfo set imgArr="[${fArr}]" where username="${sesh}";`;
+
+  con.query(sql, async (err, results) => {
+    if (err) throw err;
+    console.log(results);
+    console.log(1);
+    if (results === undefined || results.length == 0) {
+      console.log(2);
+      return res.redirect("/");
+    }
+    console.log(3);
+    return res.redirect("/main");
+  });
+
+  
+
+  console.log(req);
+  console.log(req.files);
+  console.log(req.body);
 });
 
 // GET /login

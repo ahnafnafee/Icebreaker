@@ -60,12 +60,17 @@ customBtn.addEventListener("click", function() {
 
 extraImgBtn.addEventListener("change", function() {
   if (extraImgBtn.value) {
+    let x = [this.files];
+    console.log(x);
     let fileArr = this.files;
     console.log(this.files);
     const file = this.files[0];
     if (file) {
       ++count;
-      formData2.append("imgArr", fileArr);
+
+      for( var i =0; i< fileArr.length ; i++ ){
+        formData2.append('imgArr[]' , fileArr[i] );
+    }
 
       console.log(fileArr);
 
@@ -101,28 +106,32 @@ selectElement("#submit").addEventListener("click", async () => {
 async function submitForm() {
   formData.append("userDesc", $(".acct-desc").val());
 
-  $.ajax({
+  await $.ajax({
     url: "/reg1",
     data: formData,
     method: "POST",
     type: "POST",
     contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
     processData: false, // NEEDED, DON'T OMIT THIS
+    error: err => {
+      console.log(err);
+    }
+    // ... Other options like success and etc
+  });
+
+  await $.ajax({
+    url: "/reg2",
+    data: formData2,
+    method: "POST",
+    type: "POST",
+    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+    processData: false, // NEEDED, DON'T OMIT THIS
     success: function(data) {
-        window.location.href = "/main";
+      window.location.href = "/main";
     },
-    error: (err) => {
-        console.log(err);
+    error: err => {
+      console.log(err);
     }
     // ... Other options like success and etc
   });
 }
-
-// function ValidateSize(file) {
-//   var FileSize = file.size / 1024 / 1024; // in MB
-//   if (FileSize > 2) {
-//     alert("File size exceeds 512 KB");
-//     // $(file).val(''); //for clearing with Jquery
-//   } else {
-//   }
-// }
