@@ -79,6 +79,7 @@ app.use(morgan("dev"));
 
 // For serving files from public dir
 app.use(express.static("public"));
+app.use(express.static("uploads"));
 
 // use application/json parser
 app.use(bodyParser.json());
