@@ -110,6 +110,10 @@ app.get("/rlogin", (req, res) => {
 
 // GET /account
 app.get("/account", (req, res) => {
+  if(!req.session.username){
+  req.session.msg = 'Please log in to gain access.';
+  return res.redirect('/login');
+  }
   res.sendFile(path.join(__dirname + "/public/userprofile.html"));
 });
 
