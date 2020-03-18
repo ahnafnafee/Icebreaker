@@ -10,18 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Exo:900&display=swap" rel="stylesheet">
     <link rel="icon" href="images/favicon.png">
     <link href="css/reg2_style.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-        rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
-    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js" defer></script>
-    <script src="https://unpkg.com/filepond/dist/filepond.js" defer></script>
-    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"
-        defer>
-    </script>
-    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js" defer>
-    </script>
-    <script src="https://unpkg.com/filepond-plugin-file-rename/dist/filepond-plugin-file-rename.js"></script>
 
     <title>Icebreaker - Register</title>
     <script src="scripts/reg2_script.js" defer></script>
@@ -55,13 +44,13 @@
                         <a href="/features" class="nav-link">FEATURES</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/contact" class="nav-link">CONTACT US</a>
+                        <a href="/contactus" class="nav-link">CONTACT US</a>
                     </li>
                     <li class="nav-item login">
-                        <a href="/login" class="nav-link">LOGIN</a>
+                        <a href="/account" class="nav-link">MY PROFILE</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/register" class="nav-link reg-btn">SIGN UP</a>
+                        <a href="/logout" class="nav-link reg-btn">LOGOUT</a>
                     </li>
                 </ul>
 
@@ -75,10 +64,47 @@
                 <div class="container-2">
                     <div class="bg-img"></div>
 
-                    <h1 class="welcome-msg">Welcome Andrew</h1>
-                    <p class="tagline-1">Time to get it on with your personality</p>
+                    <form id="form_login" enctype="multipart/form-data">
+                        <h1 class="welcome-msg">Welcome Andrew</h1>
+                        <p class="tagline-1">Time to get it on with your personality</p>
 
-                    <input class="filepond" type="file" accept="image/png, image/jpeg, image/gif" />
+                        <div class="user-dp-ctn">
+                            <label for="user-dp" class="custom-file-upload">
+                            </label>
+                            <input id="user-dp" hidden type="file" accept="image/png, image/jpeg" />
+                        </div>
+
+                        <p class="tag-help">Add a profile picture</p>
+                        <div class="divider-border"></div>
+
+                        <div class="custom-btn-ctn">
+                            <input type="file" id="user-img" accept="image/png, image/jpeg" hidden="hidden" multiple />
+                            <a id="custom-button">ADD IMAGES</a>
+                        </div>
+                        <div id="selected-img" class="user-img-ctn">
+                        </div>
+                        <p class="tag-help">Add some photos defining your personality (like furniture, inside of your
+                            fridge, etc)</p>
+                        <div class="divider-border"></div>
+                        <div class="chip-grp">
+                            <div class="chip">Painting</div>
+                            <div class="chip">Singing</div>
+                            <div class="chip">Hiking</div>
+                        </div>
+                        <p class="tag-help">Add interests</p>
+                        <div class="divider-border"></div>
+                        <textarea class="acct-desc" name="subject" placeholder="Describe yourself.."
+                            required></textarea>
+                        <p class="tag-help">Describe yourself</p>
+                        <div class="f-btn-container">
+                            <input id="submit" type="button" class="fin-login-btn" value="Finish" />
+                        </div>
+
+
+                    </form>
+
+
+
 
                 </div>
             </section>
@@ -114,7 +140,7 @@
                             </li>
                             <li class="footer-col--item-2">
                                 <a href="/features" class="footer-item-link">FAQ</a>
-                            </li>                            
+                            </li>
                         </ul>
                     </div>
                 </nav>

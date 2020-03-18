@@ -202,22 +202,160 @@ nav {
     margin-bottom: 20px;
 }
 
+.welcome-msg {
+    font-family: "TiemposH", sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.tagline-1 {
+    text-align: center;
+}
+
+#form_login {
+    width: 100%;
+    margin: 0 auto;
+}
+
 /* Pic Uploader */
 
-.filepond {
-    
-    background: white;
-
+.user-dp-ctn {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.filepond--root {
-    width: 80px;
-    margin: 0 auto;
+.custom-file-upload {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    content: url("../images/img-up.png");
+    object-fit: cover;
+    width: 6rem;
+    height: 6rem;
+    display: inline-block;
+    border: 1px solid  #24CFA0;
+    border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0px 0px 30px -13px rgba(0,0,0,0.75);
 }
-.filepond--drop-label {
-    color: #4c4e53;
+
+.divider-border {
+    margin: 16px 0;
+    border-bottom: 2px solid rgb(224, 224, 224);
+    box-shadow: 2px 2px 40px 1px rgba(0, 0, 0, 0.1);
+}
+
+.custom-btn-ctn {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#custom-button {
+    padding: 10px;
+    color: black;
+    background-color: wheat;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#custom-button:hover {
+    background-color: rgb(214, 171, 91);
+}
+
+.chip-grp {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    align-self: start;
+}
+
+.chip {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 6px 16px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    color: #24CFA0;
+    background-color: #E3FFF7;
+}
+
+.tag-help {
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Questrial", sans-serif;
+    color: #517CA7;
+}
+
+.f-btn-container {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fin-login-btn {
+    font-family: "TiemposH", sans-serif;
+    font-weight: inherit;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 1rem;
+    outline: none;
+    border: 0;
+    text-align: center;
+    letter-spacing: 0.2px;
+    background: #4DDBB4;
+    color: white;
+    display: inline-block;
+    box-shadow: 4px 7px 30px 4px rgba(122, 188, 255, 0.4);
+    margin-top: 3rem;
+    cursor: pointer;
+    padding: 1.5rem 6rem;
+    transition: background-color 650ms;
+    transition: all 0.3s ease 0s;
+
+}
+
+.acct-desc {
+    width: 100%;
+    max-width: 100%;
+    height: 10rem;
+    background-color: white;
+    padding: 15px;
+    font-family: "Raleway", sans-serif;
+    font-size: 15px;
+    text-align: left;
+    font-size: 15px;
+    margin-bottom: 16px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px -14px rgba(0, 0, 0, 0.75);
+}
+
+.user-img-ctn {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 0;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.user-img-ctn img {
+    height: 80px;
+    width: 80px;
+    margin-right: 10px;
+    object-fit: cover;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 2px 2px 36px -14px rgba(0, 0, 0, 0.75);
 }
 
 /* Pic Uploader ends */
@@ -433,6 +571,11 @@ nav {
 
     .nav-link:hover::before {
         transform: scaleX(1);
+    }
+
+    #form_login {
+        width: 40%;
+        margin: 0;
     }
 
     .footer-col--title-1 {

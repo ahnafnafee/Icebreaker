@@ -1,3 +1,7 @@
+var formData = new FormData();
+var formData2 = new FormData();
+let count = 0;
+
 const selectElement = s => document.querySelector(s);
 
 // Open menu on click
@@ -10,22 +14,112 @@ selectElement(".close").addEventListener("click", () => {
   selectElement(".nav-list").classList.remove("active");
 });
 
-// Register the plugin with FilePond
-FilePond.registerPlugin(FilePondPluginFileValidateType, FilePondPluginImagePreview, FilePondPluginFileValidateSize, FilePondPluginFileRename);
+$("#submit").click(false);
+$("#submit").css("background", "rgb(170, 170, 170)");
 
-FilePond.create(
-    document.querySelector('input[type="file"]'), {
-        labelIdle: `Add<br>Image`,
-        imagePreviewHeight: 60,
-        maxFileSize: '750kb',
-        labelMaxFileSize: 'Maximum file size is 750kb',
-        imageCropAspectRatio: '1:1',
-        imageResizeTargetWidth: 70,
-        imageResizeTargetHeight: 70,
-        stylePanelLayout: 'compact circle',
-        styleLoadIndicatorPosition: 'center bottom',
-        styleProgressIndicatorPosition: 'right bottom',
-        styleButtonRemoveItemPosition: 'left bottom',
-        styleButtonProcessItemPosition: 'right bottom',
+const extraImgBtn = document.getElementById("user-img");
+const customBtn = document.getElementById("custom-button");
+const imgCtn = document.querySelector("#selected-img");
+
+const imgFile = document.getElementById("user-dp");
+const dpLabel = document.querySelector(".custom-file-upload");
+
+let node = document.createElement("img");
+
+imgFile.addEventListener("change", function() {
+  if (imgFile.value) {
+    console.log(this.files);
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      formData.append("userDp", file);
+
+      console.log(file.size);
+      if (file.size / 1024 / 1024 > 1) {
+        return alert("File size exceeds 1 MB");
+      }
+
+      $(".custom-file-upload").click(false);
+      $("#user-dp").click(false);
+      ++count;
+
+      reader.addEventListener("load", function() {
+        console.log(formData);
+        console.log(this);
+        dpLabel.style.content = `url(${this.result})`;
+      });
+
+      reader.readAsDataURL(file);
     }
-);
+  }
+});
+
+customBtn.addEventListener("click", function() {
+  extraImgBtn.click();
+});
+
+extraImgBtn.addEventListener("change", function() {
+  if (extraImgBtn.value) {
+    let fileArr = this.files;
+    console.log(this.files);
+    const file = this.files[0];
+    if (file) {
+      ++count;
+      formData2.append("imgArr", fileArr);
+
+      console.log(fileArr);
+
+      for (var i = 0; i < fileArr.length; i++) {
+        const reader = new FileReader();
+        console.log(i);
+
+        if (fileArr[i].size / 1024 / 1024 > 1) {
+          return alert("File size exceeds 1 MB");
+        }
+
+        reader.addEventListener("load", async function() {
+          console.log(this);
+          let myEle = document.createElement("img");
+          myEle.style.content = `url(${this.result})`;
+          imgCtn.appendChild(myEle);
+        });
+
+        reader.readAsDataURL(fileArr[i]);
+      }
+    }
+  }
+});
+
+selectElement("#submit").addEventListener("click", async () => {
+  if (count > 1) {
+    $("#submit").css("background", "#4DDBB4");
+    console.log(formData);
+    submitForm();
+  }
+});
+
+async function submitForm() {
+  formData.append("userDesc", $(".acct-desc").val());
+
+  $.ajax({
+    url: "/reg1",
+    data: formData,
+    method: 'POST',
+    type: 'POST',
+    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+    processData: false, // NEEDED, DON'T OMIT THIS
+    success: function(response) {
+        console.log("Hooray");
+    }
+    // ... Other options like success and etc
+  });
+}
+
+// function ValidateSize(file) {
+//   var FileSize = file.size / 1024 / 1024; // in MB
+//   if (FileSize > 2) {
+//     alert("File size exceeds 512 KB");
+//     // $(file).val(''); //for clearing with Jquery
+//   } else {
+//   }
+// }

@@ -395,18 +395,17 @@ nav {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    justify-content: space-between;
+    align-self: start;
+    justify-content: center;
 }
 
 .chip {
     display: inline-block;
     cursor: pointer;
-    padding: 0 25px;
-    height: 30px;
-    margin-right: 2px;
+    padding: 6px 16px;
+    margin-right: 4px;
     margin-bottom: 8px;
     font-size: 16px;
-    line-height: 30px;
     border-radius: 10px;
     color: #24CFA0;
     background-color: #E3FFF7;

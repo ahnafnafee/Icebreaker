@@ -6,10 +6,39 @@ let bcrypt = require("bcrypt");
 let mysql = require("mysql");
 let session = require("client-sessions");
 let path = require("path");
-let fs = require('fs');
+let fs = require("fs");
+let multer = require("multer");
 
 let app = express();
 const port = process.env.PORT || 8080;
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function(req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 3
+  },
+  fileFilter: fileFilter
+});
 
 app.use(
   session({
@@ -43,16 +72,6 @@ app.get("/createdb", (req, res) => {
   });
 });
 
-// Delete DB
-app.get("/deletedb", (req, res) => {
-  let sql = "DROP DATABASE icebreaker";
-  con.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log(result);
-    res.send("Database deleted");
-  });
-});
-
 // Create table users
 app.get("/createusertable", (req, res) => {
   let sql =
@@ -65,13 +84,15 @@ app.get("/createusertable", (req, res) => {
   });
 });
 
-// Drop table users
-app.get("/deleteusertable", (req, res) => {
-  let sql = "DROP TABLE users";
+// Create table users
+app.get("/createuserinfotable", (req, res) => {
+  let sql =
+    "CREATE TABLE IF NOT EXISTS userinfo (username varchar(255) not null UNIQUE, userdesc varchar(255), userdp varchar(255) not null, primary key (username))";
+
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
-    res.send("Users table deleted");
+    res.send("UserInfo table created");
   });
 });
 
@@ -79,13 +100,40 @@ app.use(morgan("dev"));
 
 // For serving files from public dir
 app.use(express.static("public"));
-app.use(express.static("uploads"));
+app.use("/uploads", express.static("uploads"));
 
 // use application/json parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const users = [];
+
+app.post("/tests", upload.array("imgArr", 5), (req, res, next) => {
+  const files = req.files;
+
+  if (!files) {
+    const error = new Error("Please choose files");
+    error.httpStatusCode = 400;
+    return next(error);
+  }
+
+  for (var i = 0; i < files.length; i++) {
+    let img = fs.readFileSync(req.files[i].path);
+    let encode_img = img.toString("base64");
+    var finalImg = {
+      contentType: req.files[i].mimetype,
+      path: req.files[i].path,
+      image: new Buffer(encode_img, "base64")
+    };
+    console.log(req.files[i]);
+  }
+
+  console.log(req);
+  console.log(req.files);
+  console.log(req.body);
+});
+
+// userdp:: req.file.path
 
 // GET /index
 app.get("/", (req, res) => {
@@ -107,9 +155,9 @@ app.get("/rlogin", (req, res) => {
 
 // GET /account
 app.get("/account", (req, res) => {
-  if(!req.session.username){
-  req.session.msg = 'Please log in to gain access.';
-  return res.redirect('/login');
+  if (!req.session.username) {
+    req.session.msg = "Please log in to gain access.";
+    return res.redirect("/login");
   }
   res.sendFile(path.join(__dirname + "/public/userprofile.html"));
 });
@@ -145,6 +193,7 @@ app.post("/register", async function(req, res, next) {
     };
     users.push(user);
     let sql = `insert into users (fullname, username, password, email, dob) values ("${req.body.fullname}", "${req.body.username}", "${hashedPassword}", "${req.body.email}", "${req.body.dob}")`;
+
     con.query(sql, async (err, result) => {
       if (err) throw err;
       console.log(result);
@@ -153,11 +202,45 @@ app.post("/register", async function(req, res, next) {
       req.session.username = sesh;
       req.session.msg = "You are logged in";
       console.log(users);
-      return res.redirect("/main");
+      return res.redirect("/register2");
     });
   } catch {
     return res.redirect("/register");
   }
+});
+
+// GET /register2
+app.get("/register2", function(req, res) {
+  res.sendFile(path.join(__dirname + "/public/regfinish.html"));
+});
+
+// POST /reg1
+app.post("/reg1", upload.single("userDp"), (req, res, next) => {
+  console.log(req);
+  console.log(req.file);
+  console.log(req.body);
+  let sesh = req.session.username;
+
+  // let img = fs.readFileSync(req.files[i].path);
+  //   let encode_img = img.toString("base64");
+  //   var finalImg = {
+  //     contentType: req.files[i].mimetype,
+  //     path: req.files[i].path,
+  //     image: new Buffer(encode_img, "base64")
+  //   };
+
+  let sql = `insert into userinfo (username, userdesc, userdp) values ("${sesh}", "${req.body.userDesc}", "/uploads/${req.file.filename}")`;
+
+  con.query(sql, async (err, results) => {
+    if (err) throw err;
+    console.log(results);
+    if (results === undefined || results.length == 0) {
+      return res.redirect("/");
+    }
+    return res.redirect("/main");
+  });
+
+  return res.redirect("/login");
 });
 
 // GET /login
