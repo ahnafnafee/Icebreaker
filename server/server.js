@@ -15,6 +15,7 @@ let loggedUser = [];
 
 app.use(
   session({
+    username: "",
     cookieName: "session",
     secret: "asdfasdfasdf123",
     duration: 15 * 60 * 1000,
@@ -57,12 +58,14 @@ app.get("/deletedb", (req, res) => {
 // Create table users
 app.get("/createusertable", (req, res) => {
   let sql =
-    "CREATE TABLE users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null UNIQUE, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (username))";
+    "CREATE TABLE users (id int not null AUTO_INCREMENT, fullname varchar(255) not null, username varchar(255) not null UNIQUE, password varchar(255) not null, email varchar(255) not null, dob varchar(255) not null, primary key (id))";
+
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send("Users table created");
   });
+
 });
 
 // Drop table users
@@ -176,7 +179,11 @@ app.post("/login", async function(req, res) {
         res.contentType("application/json");
 
         loggedUser.push(req.body.username);
-        req.session.user = req.body.user;
+         var sesh = req.body.username;
+         req.session.username = sesh;
+         req.session.msg = "You are logged in";
+         console.log(req.session)
+         console.log('START HERE' + sesh +'END HERE')
         return res.redirect("/main");
 
       } else {
@@ -208,6 +215,11 @@ app.get("/main", function(req, res) {
     res.sendFile(path.join(__dirname+'/public/main.html'));
 
 });
+
+app.get("/testsession", (req, res) => {
+  console.log(req.session)
+});
+
 
 // Opening port
 app.listen(port, function() {
