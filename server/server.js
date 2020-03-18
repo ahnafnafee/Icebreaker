@@ -206,10 +206,10 @@ app.get("/logout", function(req, res) {
 
 app.get("/main", function(req, res) {
 
-  // if(!req.session.user){
-  //   req.session.msg = 'Please log in to gain access.'
-  //   return res.redirect('/');
-  // }
+  if(!req.session.username){
+    req.session.msg = 'Please log in to gain access.'
+    return res.redirect('/');
+  }
 
     res.sendFile(path.join(__dirname+'/public/main.html'));
 
