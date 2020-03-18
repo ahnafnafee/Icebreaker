@@ -202,236 +202,25 @@ nav {
     margin-bottom: 20px;
 }
 
+/* Pic Uploader */
 
-#form_login {
-    width: 100%;
-    margin: 0 auto;
+.filepond {
+    
+    background: white;
+
 }
-
-.welcome {
-    font-family: "TiemposH", sans-serif;
-    font-weight: 500;
-    font-size: 40px;
-    margin-bottom: 30px;
-}
-
-.group {
-    position: relative;
-    margin-bottom: 40px;
-}
-
-.inp-label {
-    font-size: 18px;
-    padding: 10px 10px 10px 5px;
-    display: block;
-    color: #636363;
-    width: 100%;
-    border: none;
-    padding-left: 40px;
-    border-radius: 0;
-    border-bottom: 1px solid rgb(215, 225, 235, 0.8);
-    box-shadow: 0px 2px 0.2px 0px rgba(122, 188, 255, 0.1);
-}
-
-.inp-label:focus {
-    outline: none;
-    border-bottom: none;
-}
-
-.symbol {
-    width: 26px;
-    height: 26px;
-    display: flex;
-    margin-bottom: 15px;
-    align-items: center;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-.s-name {
-    width: 25px;
-    height: 16px;
-    background: url("../images/ic_name.svg") center no-repeat;
-}
-
-.s-username {
-    width: 17px;
-    height: 19px;
-    background: url("../images/ic_username.svg") center no-repeat;
-}
-
-.s-pass {
-    width: 16px;
-    height: 19px;
-    background: url("../images/ic_pass.svg") center no-repeat;
-}
-
-.s-email {
-    width: 18px;
-    height: 14px;
-    background: url("../images/ic_email.svg") center no-repeat;
-}
-
-.s-dob {
-    width: 17px;
-    height: 19px;
-    background: url("../images/ic_dob.svg") center no-repeat;
-}
-
-
-/* Label */
-
-.inp-label::placeholder {
-    color: #999;
-    font-size: 14px;
-    font-weight: normal;
-    font-family: "Questrial", sans-serif;
-    position: absolute;
-    pointer-events: none;
-    left: 40px;
-    top: 10px;
-    transition: all 0.2s ease;
-}
-
-.text-detect {
-    top: -20px;
-    transform: scale(.75);
-    left: 30px;
-    /* font-size: 14px; */
-    color: #4a89dc;
-}
-
-
-/* Underline */
-
-.bar {
-    position: relative;
-    display: block;
-    width: 100%;
-}
-
-.bar:before,
-.bar:after {
-    content: '';
-    height: 2px;
-    width: 0;
-    bottom: 1px;
-    position: absolute;
-    background: #4a89dc;
-    transition: all 0.2s ease;
-}
-
-.bar:before {
-    left: 50%;
-}
-
-.bar:after {
-    right: 50%;
-}
-
-
-/* active */
-
-.inp-label:focus~.bar:before,
-.inp-label:focus~.bar:after {
-    width: 50%;
-}
-
-/* Reg 2 Styling */
 
 .filepond--root {
-    width:170px;
+    width: 80px;
     margin: 0 auto;
     cursor: pointer;
+    box-shadow: 0px 0px 30px -13px rgba(0,0,0,0.75);
 }
 .filepond--drop-label {
     color: #4c4e53;
 }
 
-
-/* Highlight */
-
-.highlight {
-    position: absolute;
-    height: 60%;
-    width: 100px;
-    top: 25%;
-    left: 0;
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-
-/* active */
-
-input:focus~.highlight {
-    animation: inputHighlighter 0.3s ease;
-}
-
-
-/* Animations */
-
-@keyframes inputHighlighter {
-    from {
-        background: #4a89dc;
-    }
-
-    to {
-        width: 0;
-        background: transparent;
-    }
-}
-
-.f-btn-container {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.reg-login-btn {
-    font-family: "TiemposH", sans-serif;
-    font-weight: inherit;
-    font-size: 20px;
-    background-color: white;
-    border-radius: 1rem;
-    outline: none;
-    border: 0;
-    text-align: center;
-    letter-spacing: 0.2px;
-    background: #4DDBB4;
-    color: white;
-    display: inline-block;
-    box-shadow: 4px 7px 30px 4px rgba(122, 188, 255, 0.4);
-    margin-top: 0.5rem;
-    cursor: pointer;
-    padding: 1.5rem 8rem;
-    transition: background-color 650ms;
-    transition: all 0.3s ease 0s;
-
-}
-
-.login-btn:hover {
-    background-color: white;
-    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-    color: #4DDBB4;
-    transform: translateY(-5px);
-}
-
-.p-need {
-    font-family: "Questrial", sans-serif;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    margin-top: 18px;
-}
-
-.forgot-reg {
-    font-family: "Raleway", sans-serif;
-    font-weight: 900;
-    color: #44A1FF;
-    cursor: pointer;
-}
+/* Pic Uploader ends */
 
 .bg-img {
     display: none;
@@ -603,11 +392,6 @@ input:focus~.highlight {
 
     .menu-icons {
         display: none;
-    }
-
-    #form_login {
-        width: 40%;
-        margin: 0;
     }
 
     .bg-img {

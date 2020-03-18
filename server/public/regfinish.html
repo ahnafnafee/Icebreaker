@@ -9,12 +9,22 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Exo:900&display=swap" rel="stylesheet">
     <link rel="icon" href="images/favicon.png">
-    <link href="css/reg_style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="css/reg2_style.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js" defer></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.js" defer></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"
+        defer>
+    </script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js" defer>
+    </script>
+    <script src="https://unpkg.com/filepond-plugin-file-rename/dist/filepond-plugin-file-rename.js"></script>
+
     <title>Icebreaker - Register</title>
-    <script src="scripts/reg1_script.js" defer></script>
+    <script src="scripts/reg2_script.js" defer></script>
 
 </head>
 
@@ -45,13 +55,13 @@
                         <a href="/features" class="nav-link">FEATURES</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/contactus" class="nav-link">CONTACT US</a>
+                        <a href="/contact" class="nav-link">CONTACT US</a>
                     </li>
                     <li class="nav-item login">
-                        <a href="login.html" class="nav-link">LOGIN</a>
+                        <a href="/login" class="nav-link">LOGIN</a>
                     </li>
                     <li class="nav-item">
-                        <a href="register.html" class="nav-link reg-btn">SIGN UP</a>
+                        <a href="/register" class="nav-link reg-btn">SIGN UP</a>
                     </li>
                 </ul>
 
@@ -63,65 +73,17 @@
         <div class="main-ctn">
             <section class="hero">
                 <div class="container-2">
-                    <h1 class="welcome">Create new<br>account</h1>
                     <div class="bg-img"></div>
-                    <form id="form_login">
-                        <div class="group" data-validate="Fullname required">
-                            <input class="inp-label" id="fullname" type="text" name="fullname" placeholder="Full name"
-                                required><span class="highlight"></span><span class="bar"></span>
-                            <span class="symbol s-name"></span>
-                        </div>
-                        <div class="group" data-validate="Username required">
-                            <input class="inp-label" id="username" type="text" name="username" placeholder="Username"
-                                required><span class="highlight"></span><span class="bar"></span>
-                            <span class="symbol s-username"></span>
-                        </div>
-                        <div class="group" data-validate="Password is required">
-                            <input class="inp-label" id="password" type="password" name="password"
-                                placeholder="Password" minlength="6" maxlength="20" required><span class="highlight"></span><span class="bar"></span>
-                            <span class="symbol s-pass"></span>
-                        </div>
-                        <div class="group" data-validate="Email required">
-                            <input class="inp-label" id="email" type="email" name="email" placeholder="Email"
-                                required><span class="highlight"></span><span class="bar"></span>
-                            <span class="symbol s-email"></span>
-                        </div>
-                        <div class="group" data-validate="Date of Birth required">
-                            <input class="inp-label" id="datetime" type="datetime" name="dob"
-                                placeholder="Date of Birth" required><span class="highlight" required></span><span
-                                class="bar"></span>
-                            <span class="symbol s-dob"></span>
-                        </div>
-                        <div class="f-btn-container">
-                            <input id="submit" type="button" class="reg-login-btn" value="Create Account" />
-                        </div>
-                        <div>
-                            <p class="p-need">Already have an account? <span class="forgot-reg">Log In</span></p>
-                        </div>
-                        <div id="FormErrors" style="color:red"></div>
-                    </form>
+
+                    <h1 class="welcome-msg">Welcome Andrew</h1>
+                    <p class="tagline-1">Time to get it on with your personality</p>
+
+                    <input class="filepond" type="file" accept="image/png, image/jpeg, image/gif" />
 
                 </div>
             </section>
         </div>
     </main>
-    <script>
-        var password=document.getElementById("password");
-        var letters = /^[0-9a-zA-Z]+$/;
-        var error=document.getElementById("FormErrors");
-        if (password.length < 6 || password.length > 20){
-            error.innerHTML=error.innerHTML+"<li>Password must be between 6 and 20 characters</li>";
-            };
-
-        if (!password.value.match(letters)){
-            error.innerHTML= error.innerHTML+"<li>Password must contain letters</li>";
-        };
-
-
-        
-    
-    </script>
-
 
     <div class="footer-container">
         <div class="footer-wave"></div>
@@ -158,8 +120,8 @@
                 </nav>
                 <p class="copyright">&copy; 2020 Icebreaker</p>
             </div>
-            
-            
+
+
 </body>
 
 </html>
