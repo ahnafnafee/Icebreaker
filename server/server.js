@@ -94,7 +94,15 @@ const users = [];
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/index.html"));
 });
-
+app.get("/about", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/About.html"));
+});
+app.get("/features", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/features.html"));
+});
+app.get("/contactus", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/contactus.html"));
+});
 // GET /rlogin
 app.get("/rlogin", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/wronglogin.html"));
