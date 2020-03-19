@@ -202,28 +202,32 @@ nav {
 
 
 .carousel {
-    background: #517CA7;
-    border-radius: 0px 0px 10% 10%;
-    border-bottom: 5px solid #7ABCFF;
+    padding-bottom: 20px;
+    border-bottom: 5px solid rgb(122, 188, 255, 0.2);
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .carousel-cell {
-    width: 100%;
-    height: 250px;
-    /* center images in cells with flexbox */
-    display: flex;
-    object-fit: contain;
-    justify-content: center;
-}
-
-.carousel.is-fullscreen .carousel-cell {
-    width: auto;
+    width: 150px;
+    max-height: 120px;
+    margin-top: 10px;
+    border-radius: 10% 10% 10% 10%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.75);
 }
 
 .carousel-cell-image {
     display: block;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 0px 0px 10% 10%;
+    border-radius: 10% 10% 10% 10%;
     max-width: 100%;
 }
 
@@ -232,49 +236,6 @@ nav {
 .carousel-image {
     display: block;
 }
-
-.flickity-page-dots {
-    bottom: 0px;
-    padding-bottom: 10px;
-    ;
-}
-
-/* no circle */
-.flickity-button {
-    background: transparent;
-}
-
-.flickity-page-dots .dot {
-    width: 8px;
-    height: 8px;
-    opacity: 1;
-    background: white;
-}
-
-.flickity-page-dots .dot.is-selected {
-    background: #4DDBB4;
-}
-
-/* big previous & next buttons */
-.flickity-prev-next-button {
-    width: 50px;
-    height: 50px;
-}
-
-/* icon color */
-.flickity-button-icon {
-    fill: rgb(255, 255, 255);
-}
-
-.flickity-button:hover {
-    background: rgb(255, 255, 255, 0.05);
-}
-
-/* hide disabled button */
-.flickity-button:disabled {
-    display: none;
-}
-
 /* End of carousel styling */
 
 
@@ -284,19 +245,18 @@ nav {
 }
 
 .user-dp {
-    position: absolute;
-    right: 0;
     cursor: pointer;
-    top: 0;
-    height: 65px;
-    margin-right: 10px;
+    height: 80px;
+    margin: 0 auto;
     box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.75);
     margin-top: 10px;
     border-radius: 10px;
     width: auto;
+    margin-bottom: 2rem;
     content: url("../images/eg_user1.png");
     z-index: 1;
 }
+
 
 /* Carousel container inner styling ends*/
 
@@ -332,7 +292,7 @@ nav {
     margin-left: auto;
     margin-right: auto;
     margin-top: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 26px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -343,7 +303,9 @@ nav {
     left: 0;
     cursor: pointer;
     top: 0;
+    border-radius: 8%;
     height: 80px;
+    box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75);
     width: auto;
     content: url("../images/eg_user2.png");
     z-index: 1;

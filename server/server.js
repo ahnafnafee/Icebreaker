@@ -150,7 +150,8 @@ app.get("/allinfo", function(req, res) {
 
 // GET /personalinfo
 app.get("/personalinfo", (req, res) => {
-  let sql = `select * from users where username = "${req.session.username}"`;
+  let sql = `select fullname, users.username, dob, userdesc, userdp, imgArr
+  from users inner join userinfo where users.username = "${req.session.username}";`;
   con.query(sql, async (err, result) => {
     if (err) throw err;
     console.log(result);

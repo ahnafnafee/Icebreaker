@@ -11,6 +11,13 @@ selectElement(".close").addEventListener("click", () => {
 });
 
 $(document).ready(function() {
+  $(window).on("load", function() {
+    var lazyLoadInstance = new LazyLoad({
+      elements_selector: ".lazy"
+      // ... more custom settings?
+    });
+  });
+
   $.ajax({
     url: "/personalinfo",
     type: "GET",
@@ -18,6 +25,24 @@ $(document).ready(function() {
     success: function(response) {
       $(".acct-name").html(response[0].fullname);
       $(".acct-loc-age").html(getAge(response[0].dob) + " • Greater Philly");
+
+      let carousel = selectElement(".carousel");
+      let imgArr = response[0].imgArr.split(",");
+
+      imgArr.forEach(function(item) {
+        console.log(1);
+        let div = document.createElement("div");
+        div.classList.add("carousel-cell");
+        carousel.appendChild(div);
+        let imgCtn = document.createElement("img");
+        imgCtn.classList.add("carousel-cell-image");
+        imgCtn.setAttribute("src", `${item}`);
+        div.appendChild(imgCtn);
+        console.log(2);
+      });
+
+      $(".aboutme-desc").html(response[0].userdesc);
+      $(".acct-dp").css("content", `url("${response[0].userdp}")`);
     }
   });
 });
