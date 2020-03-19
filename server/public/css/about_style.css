@@ -68,6 +68,11 @@ header {
     padding: 0 1.5rem;
 }
 
+.img-wrapper {
+    margin: 0 auto;
+    text-align: center;
+}
+
 .container-2 {
     width: 100%;
     height: auto;
@@ -84,6 +89,19 @@ header {
 
 .empty {
     opacity: 0;
+}
+
+.heading {
+    margin-bottom: 2rem;
+    font-family: "TiemposH", sans-serif;
+    font-weight: 400;
+    font-size: 4rem;
+}
+
+.info {
+    padding: 3rem;
+    text-align: left;
+    font-size: 16px;
 }
 
 nav {
@@ -198,90 +216,16 @@ nav {
     text-align: center;
 }
 
-/* Carousel styling */
-
-
-.carousel {
-    background: #517CA7;
-    border-radius: 0px 0px 10% 10%;
-    border-bottom: 5px solid #7ABCFF;
-}
-
-.carousel-cell {
+.section-img {
+    margin-top: 5rem;
+    max-height: 40vh;
     width: 100%;
-    height: 250px;
-    /* center images in cells with flexbox */
-    display: flex;
-    object-fit: contain;
-    justify-content: center;
-}
-
-.carousel.is-fullscreen .carousel-cell {
-    width: auto;
-}
-
-.carousel-cell-image {
-    display: block;
     object-fit: cover;
-    border-radius: 0px 0px 10% 10%;
-    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 
-
-.carousel-image {
-    display: block;
-}
-
-.flickity-page-dots {
-    bottom: 0px;
-    padding-bottom: 10px;
-    ;
-}
-
-/* no circle */
-.flickity-button {
-    background: transparent;
-}
-
-.flickity-page-dots .dot {
-    width: 8px;
-    height: 8px;
-    opacity: 1;
-    background: white;
-}
-
-.flickity-page-dots .dot.is-selected {
-    background: #4DDBB4;
-}
-
-/* big previous & next buttons */
-.flickity-prev-next-button {
-    width: 50px;
-    height: 50px;
-}
-
-/* icon color */
-.flickity-button-icon {
-    fill: rgb(255, 255, 255);
-}
-
-.flickity-button:hover {
-    background: rgb(255, 255, 255, 0.05);
-}
-
-/* hide disabled button */
-.flickity-button:disabled {
-    display: none;
-}
-
-/* End of carousel styling */
-
-
-/* Carousel container inner styling */
-.carousel-ctn {
-    position: relative;
-}
 
 .user-dp {
     position: absolute;
@@ -458,6 +402,14 @@ nav {
     left: 0;
     background-color: #517CA7;
 }
+
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+
 
 .site-footer {
     width: 100%;
@@ -638,6 +590,12 @@ nav {
         font-weight: bold;
     }
 
+    .info {
+        width:50%;
+        padding: inherit;
+        margin: 0 auto;
+    }
+
     .nav-link:before {
         content: "";
         position: absolute;
@@ -679,6 +637,12 @@ nav {
         margin-right: 15rem;
     }
 
+    .section-img {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .nav-brand {
         width: 90px;
         ;
@@ -695,13 +659,4 @@ nav {
         color: white;
         text-align: center;
     }
-}
-h1{
-    text-align:center; 
-    font-size: 50px;
-}
-
-.Info {
-    text-align:center;
-    font-size:20px;
 }
