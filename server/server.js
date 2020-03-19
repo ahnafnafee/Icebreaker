@@ -135,6 +135,19 @@ app.get("/account", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/userprofile.html"));
 });
 
+// GET /allinfo
+app.get("/allinfo", function(req, res) {
+  let sql = `select fullname, users.username, dob, userdesc, userdp, imgArr
+  from users inner join userinfo;`;
+  con.query(sql, async (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    console.log("Username queried");
+    res.type("application/json");
+    res.send(result);
+  });
+});
+
 // GET /personalinfo
 app.get("/personalinfo", (req, res) => {
   let sql = `select * from users where username = "${req.session.username}"`;
@@ -224,7 +237,7 @@ app.post("/reg2", upload.array("imgArr[]", 5), (req, res, next) => {
   let fArr = [];
 
   for (var i = 0; i < files.length; i++) {
-    fArr.push(`/uploads/${req.files[i].path}`)
+    fArr.push(`/uploads/${req.files[i].filename}`);
     let img = fs.readFileSync(req.files[i].path);
     let encode_img = img.toString("base64");
     var finalImg = {
@@ -236,7 +249,7 @@ app.post("/reg2", upload.array("imgArr[]", 5), (req, res, next) => {
   }
 
   let sesh = req.session.username;
-  let sql = `update userinfo set imgArr="[${fArr}]" where username="${sesh}";`;
+  let sql = `update userinfo set imgArr="${fArr}" where username="${sesh}";`;
 
   con.query(sql, async (err, results) => {
     if (err) throw err;
@@ -249,8 +262,6 @@ app.post("/reg2", upload.array("imgArr[]", 5), (req, res, next) => {
     console.log(3);
     return res.redirect("/main");
   });
-
-  
 
   console.log(req);
   console.log(req.files);

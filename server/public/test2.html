@@ -1,123 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>
-        Async file upload with jQuery
-    </title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-    </script>
-    <!-- <script src="scripts/dropzone.min.js"></script>
-    <link rel="stylesheet" href="css/dropzone.min.css"> -->
-    <style>
-        #custom-button {
-            padding: 10px;
-            color: black;
-            background-color: wheat;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #custom-button:hover {
-            background-color: rgb(214, 171, 91);
-        }
-
-        #custom-text {
-            margin-left: 10px;
-            font-family: sans-serif;
-            color: #aaa;
-        }
-
-        .portrait {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            padding-right: 16px;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .portrait img {
-            max-width: 100px;
-            max-height: auto;
-            object-fit: cover;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Questrial|Raleway|Source+Sans+Pro&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo:900&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.png">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@13.0.1/dist/lazyload.min.js" defer></script>
+    <title>Discover - Icebreaker</title>
+    <link href="css/main_style.css" rel="stylesheet" />
+    <script src="scripts/main_script.js" defer></script>
 </head>
 
 <body>
+    <header>
+        <div class="container-1">
+            <nav>
+                <div class="menu-outline empty"></div>
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img id="logo" src="images/ic_logo.png" alt="">
+                    </a>
+                </div>
 
-    <input type="file" id="real-file" hidden="hidden" multiple />
-    <a id="custom-button">CHOOSE A FILE</a>
-    <span id="custom-text">No file chosen, yet.</span>
-    <div id="port" class="portrait">
-        <img class="img-cl" src="#" alt="">
-    </div>
+                <div class="menu-icons open">
+                    <span class="menu-outline"></span>
+                </div>
 
-    <script>
-        const realFileBtn = document.getElementById("real-file");
-        const customBtn = document.getElementById("custom-button");
-        const customTxt = document.getElementById("custom-text");
-        const port = document.querySelector("#port");
-        const prevImg = document.querySelector("img");
+                <ul class="nav-list">
+                    <div class="menu-icons close">
+                        <span class="close-outline"></span>
+                    </div>
+                    <li class="nav-item first">
+                        <a href="/about" class="nav-link">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/features" class="nav-link">FEATURES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contactus" class="nav-link">CONTACT US</a>
+                    </li>
+                    <li class="nav-item login">
+                        <a href="/account" class="nav-link">MY PROFILE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href = '/logout' class="nav-link reg-btn">LOGOUT</a>
+                    </li>
+                </ul>
 
-        var node = document.createElement("img");
+            </nav>
+        </div>
+    </header>
 
-        customBtn.addEventListener("click", function () {
-            realFileBtn.click();
-        });
+    <main>
+        <div class="main-ctn">
+            <section class="hero">
+                <div class="container-2">
+                    <h1 class="discover">Discover</h1>
 
-        realFileBtn.addEventListener("change", function () {
+                    <div class="carousel-ctn">
+                        <div class="user-dp"></div>
+                        <div class="carousel">
+                            <!-- <div class="carousel-cell">
+                                <img class="carousel-cell-image" data-flickity-lazyload="/uploads/imgArr[]-1584575420841.jpg" />
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="carousel-cell-image" data-flickity-lazyload="/uploads/imgArr[]-1584575420841.jpg" />
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="carousel-cell-image" data-flickity-lazyload="/uploads/imgArr[]-1584575420842.jpg" />
+                            </div> -->
+                        </div>
+                    </div>
+                    
 
-            if (realFileBtn.value) {
-                console.log(this.files);
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    prevImg.style.display = "block";
+                    <div class="action-btn">
+                        <div class="deny-btn"></div>
+                        <div class="accept-btn"></div>
+                    </div>
 
-                    console.log(file.size);
-                    if ((file.size / 1024 / 1024) > 2) {
-                        return alert('File size exceeds 512 KB');
-                    }
+                    <div class="user-info">
+                        <h3 class="user-name">Jonathan Blake</h3>
+                        <h4 class="user-loc-age">24 yrs • Greater Philly</h4>
+                        <div class="chip-grp">
+                            <div class="chip">Painting</div>
+                            <div class="chip">Singing</div>
+                            <div class="chip">Hiking</div>
+                        </div>
+                        <h4 class="aboutme-title">About Me</h4>
+                        <p class="aboutme-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi iusto
+                            quibusdam totam, ab deserunt quia. Vitae iste neque, ipsum corrupti optio minus, maiores
+                            quia adipisci eius nobis, eligendi quaerat aperiam</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
-                    reader.addEventListener("load", function () {
-                        console.log(this);
-                        let myEle = document.createElement("img");
-                        
-                        myEle.style.content = `url(${this.result})`;
-                        port.appendChild(myEle)
-                        
-                    });
+    <div class="footer-container">
+        <div class="footer-wave"></div>
+        <footer>
+            <div class="site-footer">
+                <nav class="site-footer--nav">
+                    <div class="site-footer--col">
+                        <h5 class="footer-col--title-1">
+                            EXPLORE
+                        </h5>
+                        <ul class="footer-col--list-1">
+                            <li class="footer-col--item-1">
+                                <a href="/about" class="footer-item-link">About</a>
+                            </li>
+                            <li class="footer-col--item-1">
+                                <a href="/features" class="footer-item-link">Features</a>
+                            </li>
+                        </ul>
+                    </div>
 
-                    reader.readAsDataURL(file);
-
-                } else {
-                    prevImg.style.display = null;
-                    prevImg.style.content = `url("")`;
-                }
-
-
-                customTxt.innerHTML = realFileBtn.value.match(
-                    /[\/\\]([\w\d\s\.\-\(\)]+)$/
-                )[1];
-            } else {
-                customTxt.innerHTML = "No file chosen, yet.";
-            }
-        });
-
-        function ValidateSize(file) {
-            var FileSize = file.size / 1024 / 1024; // in MB
-            if (FileSize > 2) {
-                alert('File size exceeds 512 KB');
-               // $(file).val(''); //for clearing with Jquery
-            } else {
-    
-            }
-        }
-    </script>
+                    <div class="site-footer--col">
+                        <h5 class="footer-col--title-2">
+                            GET SUPPORT
+                        </h5>
+                        <ul class="footer-col--list-2">
+                            <li class="footer-col--item-2">
+                                <a href="/contactus" class="footer-item-link">Contact Us</a>
+                            </li>
+                            <li class="footer-col--item-2">
+                                <a href="/features" class="footer-item-link">FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <p class="copyright">&copy; 2020 Icebreaker</p>
+            </div>
 </body>
 
 </html>
