@@ -110,7 +110,11 @@ const users = [];
 
 // GET /index
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/public/index.html"));
+  if (!req.session.username) {
+    res.sendFile(path.join(__dirname + "/public/index.html"));
+  } else {
+    return res.redirect("/main");
+  }
 });
 app.get("/about", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/About.html"));
