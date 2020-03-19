@@ -78,7 +78,7 @@ extraImgBtn.addEventListener("change", function() {
         const reader = new FileReader();
         console.log(i);
 
-        if (fileArr[i].size / 1024 / 1024 > 1) {
+        if (fileArr[i].size / 1024 / 1024 > 3) {
           return alert("File size exceeds 1 MB");
         }
 
